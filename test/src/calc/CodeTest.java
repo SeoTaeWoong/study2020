@@ -12,15 +12,12 @@ public class CodeTest {
 		
 		String[][] a = new String[][] {{"keroro","dood"},{"loa","noa"}};
 		String b = "dodo";
-		System.out.println(a.length);
-		System.out.println(a[0].length);
-		System.out.println(a[0][0].length());
-		
-		System.out.println(a);
-		System.out.println(a[0]);
-		System.out.println(a[0][0].toString());
-		System.out.println(b.toString());
-		
+		int i=0;
+		if((b.indexOf("d"))!=-1) {
+			
+			System.out.println(b.indexOf("d"));
+			System.out.println(b.indexOf("o"));
+		}
 
 	}
 

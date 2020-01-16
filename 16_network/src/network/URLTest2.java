@@ -19,14 +19,10 @@ public class URLTest2 {
 		String data = null;
 		while((data = br.readLine()) !=null) {
 			int i=0;
-			while((i=data.indexOf(i))!=-1) {
-				i = i+"14k".length();
-				if(data.toUpperCase().indexOf("14k"))) {
-					cnt++;
-				}
-//				if(data.indexOf("14k".toUpperCase())>-1) {
-//					cnt++;
-//				}
+			while((i=data.toUpperCase().indexOf("14K",i))!=-1) {
+				i+="14K".length();
+				cnt++;
+				System.out.println(cnt);
 			}
 			
 		}

@@ -1,8 +1,0 @@
-package galaga;
-
-import java.awt.Canvas;
-
-public class GalagaCanvas extends Canvas{
-	
-	
-}
