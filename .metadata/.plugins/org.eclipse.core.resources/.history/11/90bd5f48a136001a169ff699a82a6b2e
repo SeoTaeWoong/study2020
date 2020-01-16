@@ -1,0 +1,218 @@
+package swing;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.regex.Matcher;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+
+public class MsPaint extends JFrame implements ActionListener{
+	
+	private JLabel x1L,x2L,y1L,y2L,z1L,z2L;
+	private JTextField x1T,x2T,y1T,y2T,z1T,z2T;
+	private JCheckBox fill;
+	private JComboBox<String> color;
+	private JRadioButton line,rect,roundRect,cycle, pen;
+	private ButtonGroup group;
+	private JButton drawBtn, undoBtn, clsBtn;
+	private Container con;
+	
+	private JPanel topP,botP;
+	private JPanel xy1P, xy2P,zP,fillP;
+	private JPanel shapeP, colorsP,motionP;
+	
+	private MsCanvas canvas;
+	
+	//액션리스너에서 사용
+	private HashMap<String, Color> sColor;
+	private String shapeA;
+	private boolean fillA;
+	
+	public MsPaint(){
+		setBounds(700,300,680,300);
+		x1L = new JLabel("x1");	y1L = new JLabel("y1"); z1L = new JLabel("z1");
+		x2L = new JLabel("x2");	y2L = new JLabel("y2"); z2L = new JLabel("z2");
+		
+		x1T = new JTextField("0",3);	y1T = new JTextField("0",3); z1T = new JTextField("50",3);
+		x2T = new JTextField("0",3);	y2T = new JTextField("0",3); z2T = new JTextField("50",3);
+		x1T.setFocusable(true);
+		
+		fill = new JCheckBox("채우기");
+		fill.setSelected(true);
+		
+		topP = new JPanel(new GridLayout(1,4,2,1));
+		xy1P = new JPanel();	xy2P = new JPanel();
+		zP = new JPanel();	
+		fillP = new JPanel(new FlowLayout(FlowLayout.CENTER));	
+		
+		xy1P.add(x1L);	xy1P.add(x1T);	xy1P.add(y1L);	xy1P.add(y1T);	
+		xy2P.add(x2L);	xy2P.add(x2T);	xy2P.add(y2L);	xy2P.add(y2T);
+		zP.add(z1L);	zP.add(z1T);	zP.add(z2L);	zP.add(z2T);
+		fillP.add(fill);
+		topP.add(xy1P);	topP.add(xy2P);	topP.add(zP);	topP.add(fillP);
+		
+		
+		con = getContentPane();
+		con.add("North",topP);
+		
+		canvas = new MsCanvas(x1T, y1T,);
+		
+		canvas.setBackground(Color.WHITE);
+		con.add("Center",canvas);
+		
+		
+		line = new JRadioButton("선");
+		cycle = new JRadioButton("원");
+		rect = new JRadioButton("사각형");
+		roundRect = new JRadioButton("둥근사각형");
+		pen = new JRadioButton("연필");
+		group = new ButtonGroup();
+		group.add(line);	group.add(cycle);	group.add(rect);	group.add(roundRect); group.add(pen);
+		rect.setSelected(true);
+		
+		sColor = new HashMap<String, Color>();
+		//"검정", "빨강", "초록", "파랑", "보라", "하늘"
+		sColor.put("검정",Color.BLACK);
+		sColor.put("빨강",Color.RED);
+		sColor.put("초록",Color.GREEN);
+		sColor.put("파랑",Color.BLUE);
+		sColor.put("보라",Color.MAGENTA);
+		sColor.put("하늘",Color.CYAN);
+		
+		String[] colors = {"검정", "빨강", "초록", "파랑", "보라", "하늘"};
+		color = new JComboBox<String>(colors);
+		
+		drawBtn = new JButton("그리기");
+		undoBtn = new JButton("실행 취소");
+		clsBtn = new JButton("클리어");
+		
+		botP = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		shapeP = new JPanel();
+		colorsP = new JPanel();
+		motionP = new JPanel();
+		
+		
+		shapeP.add(line);	shapeP.add(cycle);	shapeP.add(rect);	shapeP.add(roundRect); shapeP.add(pen);
+		colorsP.add(color);	motionP.add(drawBtn);	motionP.add(undoBtn);	motionP.add(clsBtn);
+		
+		botP.add(shapeP);	botP.add(colorsP);	botP.add(motionP);
+		
+		con.add("South",botP);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		//여기까지 모양잡아주기 
+		
+		
+		fillA=true;
+		shapeA="rect";
+		
+		fill.addActionListener(this);
+		line.addActionListener(this);
+		cycle.addActionListener(this);
+		rect.addActionListener(this);
+		roundRect.addActionListener(this);
+		pen.addActionListener(this);
+		
+		drawBtn.addActionListener(this);
+		undoBtn.addActionListener(this);
+		clsBtn.addActionListener(this);
+		
+		canvas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x1T.setText(e.getX()+"");
+				y1T.setText(e.getY()+"");
+				canvas.setting(shapeA, fillA, sColor.get(color.getSelectedItem()), "0", "0", "0", "0", "0", "0");
+				if(shapeA == "pen") {
+					canvas.setT_F(5);
+				}
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+		});
+		canvas.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				if(shapeA == "pen") {
+					x2T.setText(e.getX()+"");
+					y2T.setText(e.getY()+"");
+					
+					canvas.setting(shapeA, fillA, sColor.get(color.getSelectedItem()), x1T.getText(), y1T.getText(), x2T.getText(), y2T.getText(), z1T.getText(), z2T.getText());
+					x1T.setText(x2T.getText());
+					y1T.setText(y2T.getText());
+				}else {
+					x2T.setText(e.getX()+"");
+					y2T.setText(e.getY()+"");
+					canvas.del();
+					canvas.setting(shapeA, fillA, sColor.get(color.getSelectedItem()), x1T.getText(), y1T.getText(), x2T.getText(), y2T.getText(), z1T.getText(), z2T.getText());
+				}
+			}
+		});
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		boolean judge = false;
+
+		if(!(e.getSource() instanceof JButton)) {
+			if(line.isSelected())	shapeA = "line";
+			else if(cycle.isSelected()) shapeA = "cycle";
+			else if(rect.isSelected()) shapeA = "rect";
+			else if(roundRect.isSelected()) shapeA ="roundRect";
+			else if(pen.isSelected()) shapeA ="pen";
+			fillA = fill.isSelected();
+			
+		}else {
+			String check = "^[0-9]*$";
+			if(judge=!x1T.getText().matches(check)) x1T.requestFocus(true);
+			else if(judge=!y1T.getText().matches(check)) y1T.requestFocus(true);
+			else if(judge=!x2T.getText().matches(check)) x2T.requestFocus(true);
+			else if(judge=!y2T.getText().matches(check)) y2T.requestFocus(true);
+			else if(judge=!z1T.getText().matches(check)) z1T.requestFocus(true);
+			else if(judge=!z2T.getText().matches(check)) z2T.requestFocus(true);
+			if(judge) {
+				JOptionPane.showMessageDialog(this, "좌표의 입력값이 바르지 않습니다.");
+				return;
+			}
+			
+			if(e.getSource() == drawBtn) {
+				canvas.setting(shapeA, fillA, sColor.get(color.getSelectedItem()), x1T.getText(), y1T.getText(), x2T.getText(), y2T.getText(), z1T.getText(), z2T.getText());
+			}else if(e.getSource() == undoBtn) {
+				canvas.del();
+			}else if(e.getSource() == clsBtn) {
+				canvas.cls();
+			}
+			x1T.requestFocus();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new MsPaint();
+	}
+
+}

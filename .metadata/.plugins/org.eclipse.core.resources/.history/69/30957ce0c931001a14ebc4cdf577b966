@@ -1,0 +1,18 @@
+package thread;
+
+public class RoseTest {
+	
+	public RoseTest(){
+		
+	}
+	
+	public void run() {
+		for(int i=1; i<=5; i++) {
+			System.out.println(name);
+		}	
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,91 @@
+package io;
+
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import javax.swing.JTextArea;
+
+
+public class ScoreImpl implements Score{
+	
+	private ArrayList<ScoreDTO> list;
+	int cnt;
+	
+	public ScoreImpl() {
+		list = new ArrayList<ScoreDTO>();
+	}
+	@Override
+	public void input(ScoreDTO dto) {
+		list.add(dto);
+	}
+	@Override
+	public void print(JTextArea output) {
+		output.setText("  학점   이름   국어   영어   수학   총점   평균\n");
+		for(ScoreDTO dto : list) {
+			System.out.println("11");
+			output.append(dto.toString());
+		}
+	}
+	@Override
+	public void search(JTextArea output, String hak) {
+		output.setText("  학점   이름   국어   영어   수학   총점   평균\n");
+		for(ScoreDTO dto : list) {
+			if(dto.getHak().equals(hak))
+			output.append(dto.toString());
+		}
+	}
+	@Override
+	public void tot_desc() {
+		
+		Comparator<ScoreDTO> com = new Comparator<ScoreDTO>() {
+			@Override
+			public int compare(ScoreDTO dto1, ScoreDTO dto2) {
+				return dto1.getTot() < dto2.getTot() ? 1:-1;
+			}
+		};
+		Collections.sort(list,com);
+	}
+
+	@Override
+	public void save(File file) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			for(ScoreDTO dto : list) {
+				oos.writeObject(dto);
+			}
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void load(File file,JTextArea output) {
+		try {
+			
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			list.clear();
+
+			ScoreDTO data;
+			
+			while((data=(ScoreDTO)ois.readObject())!=null) {
+				
+				list.add(data);
+			}
+			ois.close();
+			output.setText("  학점   이름   국어   영어   수학   총점   평균\n");
+			for(ScoreDTO dto : list) {
+				output.append(dto.toString());
+			}
+		} catch (Exception e) {
+		}
+	}
+	
+
+}

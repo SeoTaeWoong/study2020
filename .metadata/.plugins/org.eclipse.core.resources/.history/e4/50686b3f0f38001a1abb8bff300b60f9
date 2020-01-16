@@ -1,0 +1,12 @@
+package network;
+
+public class ProtocolClient {
+	
+	public ProtocolClient() {
+		
+	}
+	
+	public static void main(String[] args) {
+		new ProtocolClient();
+	}
+}

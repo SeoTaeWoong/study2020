@@ -1,0 +1,21 @@
+package collection;
+
+public class SungJuckDTO {
+	
+	private int key;
+	private String name;
+	private int kor;
+	private int eng;
+	private int meth;
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+}

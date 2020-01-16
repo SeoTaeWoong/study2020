@@ -1,0 +1,15 @@
+1578877740840	Rename type 'MsPaint1'
+1578877746786	Rename type 'MsCanvas1'
+1578877930500	Rename package 'Project'
+1578880037092	Copy compilation unit
+1578880049632	Copy compilation unit
+1578882552432	Delete element
+1578882554065	Delete element
+1578886983842	Rename local variable 'question'
+1579077155490	Rename package 'Tetrics'
+1579086599568	Rename package 'tetris'
+1579086616667	Rename type 'TetrisShape'
+1579089217258	Encapsulate field 'x2'
+1579089226320	Encapsulate field 'x1'
+1579089230148	Encapsulate field 'y1'
+1579089233398	Encapsulate field 'y2'

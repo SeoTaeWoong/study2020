@@ -1,0 +1,60 @@
+package swing;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Timer extends JFrame implements ActionListener, Runnable{
+	private JButton goBtn;
+	private JButton stopBtn;
+	private JPanel panel;
+	
+	public Timer() {
+		setBounds(900,200,500,500);
+		panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		goBtn = new JButton("시작");
+		stopBtn = new JButton("정지");
+		Container con = this.getContentPane();
+		panel.add(goBtn);
+		panel.add(stopBtn);
+		con.add("South",panel);
+		setVisible(true);
+		
+		goBtn.addActionListener(this);
+		stopBtn.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		boolean bb;
+		if(e.getSource()==goBtn) {
+			bb=true;
+			Thread t = new Thread(this);
+			t.start();
+			goBtn.setEnabled(false);
+			stopBtn.setEnabled(true);
+		}else if(e.getSource()==stopBtn) {
+			bb=false;
+			goBtn.setEnabled(true);
+			stopBtn.setEnabled(false);
+		}
+	}
+
+
+	
+	@Override
+	public void run() {
+		for(int i = 1; i<=20; i++) {
+			
+		}
+	}
+	public static void main(String[] args) {
+		new Timer();
+	}
+
+}

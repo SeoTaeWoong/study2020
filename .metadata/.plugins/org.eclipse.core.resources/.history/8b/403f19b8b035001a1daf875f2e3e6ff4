@@ -1,0 +1,59 @@
+package study_teacher;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class DrCanvas extends Canvas {
+	private MsPaint msPaint;
+
+	public DrCanvas(MsPaint msPaint) {
+		this.msPaint = msPaint;
+		this.setBackground(new Color(255,225,255));
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		//ÁÂÇ¥
+		int x1 = Integer.parseInt(msPaint.getX1T().getText().trim());
+		int y1 = Integer.parseInt(msPaint.getY1T().getText().trim());
+		int x2 = Integer.parseInt(msPaint.getX2T().getText().trim());
+		int y2 = Integer.parseInt(msPaint.getY2T().getText().trim());
+		int z1 = Integer.parseInt(msPaint.getZ1T().getText().trim());
+		int z2 = Integer.parseInt(msPaint.getZ2T().getText().trim());
+		
+		switch(msPaint.getCombo().getSelectedIndex()) {
+		case 0:	g.setColor(new Color(255,0,0));	break;
+		case 1:	g.setColor(new Color(200,91,2)); break;
+		case 2:	g.setColor(new Color(255,255,0)); break;
+		case 3:	g.setColor(new Color(0,255,0)); break;
+		case 4:	g.setColor(new Color(0,0,255)); break;
+		case 5:	g.setColor(new Color(11,1,80)); break;
+		case 6:	g.setColor(new Color(255,0,255)); break;
+		}
+		
+		if(msPaint.getFill.isSelected) {
+			
+		}else {
+			
+		}
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

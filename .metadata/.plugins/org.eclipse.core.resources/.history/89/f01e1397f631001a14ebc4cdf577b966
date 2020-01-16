@@ -1,0 +1,20 @@
+package collection;
+
+public class SungJuckDTO {
+	
+	private String name;
+	int a;
+	
+	public SungJuckDTO(String name){
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+}

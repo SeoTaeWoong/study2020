@@ -1,0 +1,26 @@
+package network;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class InetAddressTest {
+	
+	public static void main(String[] args) throws UnknownHostException {
+		InetAddress naver = InetAddress.getByName("www.naver.com"); // 서버를 찾지 못할수도 있을때
+		//host 서버
+		//	   사용자 = client
+		
+		System.out.println("NAVER IP: "+ naver.getHostAddress());
+		System.out.println();
+		
+		InetAddress local = InetAddress.getLocalHost();
+		System.out.println("LOCAL IP: "+ local.getHostAddress());
+		System.out.println();
+		
+		
+		InetAddress[] ar;
+		for(int a=0; a<3; a++) {
+		ar[a]= InetAddress.getByName("www.daum.net");
+		}
+	}
+}

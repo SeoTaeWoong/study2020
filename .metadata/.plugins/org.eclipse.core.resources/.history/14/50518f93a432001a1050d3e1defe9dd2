@@ -1,0 +1,23 @@
+package thread;
+
+public class ATMTest implements Runnable{
+	private long deposteMoney = 100000;
+	private long balance;
+	
+	public static void main(String[] args) {
+		ATMTest atm =new ATMTest();
+		Thread mom = new Thread(atm);
+		Thread son = new Thread(atm);
+	
+		mom.start();
+		mom.setName("mom");
+		son.start();
+		son.setName("son");
+	}
+
+	@Override
+	public void run() {
+		System.out.println(Thread.currentThread());
+		
+	}
+}

@@ -1,0 +1,9 @@
+package instance;
+
+public class Practice5 {
+	public static void main(String[] args) {
+		int score = 25;
+		System.out.println(score+"는 2와 3의 공배수가 아니다.");
+		System.out.println(score+"는 2와 3의 공배수 이다.");
+	}
+}

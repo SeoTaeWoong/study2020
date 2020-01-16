@@ -1,0 +1,17 @@
+package study_teacher;
+
+
+enum Figure{
+	LINE, CIRCLE, RECT, ROUNDRECT, PEN
+}
+
+public class ShapeDTO {
+
+class ShapeDTO{
+
+	private int x1,y1,x2,y2,z1,z2;
+	private boolean fill;
+	private Figure shape;
+	private int color;
+}
+}

@@ -1,0 +1,30 @@
+package collection;
+
+public class PersonDTO {
+	private String name;
+	private int age;
+	
+	public PersonDTO() {
+		
+	}
+	
+	public PersonDTO(Stirng name, int age) {
+		
+	}
+	
+	public void setName() {
+		
+	}
+	public String getName() {
+		return name;
+	}
+	
+	public void setAge() {
+		
+	}
+	public String getAge() {
+		return age;
+	}
+	
+	
+}

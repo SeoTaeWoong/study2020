@@ -1,0 +1,9 @@
+package collection;
+
+public class GenericTest2 {
+
+	
+	public static void main(String[] args) {
+		GenericTest2<?> aa = new GenericTest2<String>();
+	}
+}

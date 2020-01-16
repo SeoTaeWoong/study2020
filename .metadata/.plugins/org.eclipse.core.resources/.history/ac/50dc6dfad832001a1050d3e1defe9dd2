@@ -1,0 +1,23 @@
+package project;
+
+public class SdokuAlgorithm {
+	int[][] su;
+	
+	public void input() {
+		int cnt=1;
+		su = new int[9][9]; // 81개의 공간을 생성
+		
+		for(int i=0; i<su.length;i++) {
+			for(int j=0; j<su.length;j++) {
+				su[i][j] = cnt;
+			}
+		} // 81개의 공간에 값을 입력
+	}
+	
+	public void algorithm() {
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+}

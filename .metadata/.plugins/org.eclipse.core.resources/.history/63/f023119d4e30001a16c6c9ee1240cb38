@@ -1,0 +1,15 @@
+package nested;
+import java.awt.frame;
+
+
+public class Card {
+	private Frame frame;
+	
+	public Card() {
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

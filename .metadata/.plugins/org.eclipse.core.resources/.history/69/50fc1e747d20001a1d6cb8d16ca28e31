@@ -1,0 +1,10 @@
+package exam;
+
+public class Question {
+	private TestSeo list = new TestSeo(); 
+	static int COUNT = 0;
+	public static String question1() {
+		COUNT++;
+		return "¹®Á¦"+COUNT;
+	}
+}

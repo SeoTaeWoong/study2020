@@ -1,0 +1,8 @@
+package collection;
+
+public class SetTest {
+	
+	public static void main() {
+		Set<String> set = new HashSet<String>();
+	}
+}

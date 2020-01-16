@@ -1,0 +1,21 @@
+package collection;
+
+public class GenericTest<T> {
+	private T a;
+	
+	public void setA(T a) {
+		this.a = a;
+	}
+	
+	public T getA() {
+		return a; 
+	}
+	
+	public static void main(String[] args) {
+		GenericTest<String> gt1 = new GenericTest<String>();
+		gt1.setA("°í±æµ¿");
+		
+		GenericTest<Integer> gt2 = new GenericTest<Integer>();
+		gt2.setA("65");
+	}
+}

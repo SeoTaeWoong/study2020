@@ -1,0 +1,65 @@
+package interface_1;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+
+public class Login extends JFrame implements ActionListener{
+	private JLabel idL, pwL;
+	private JTextField idTF, pwTF;
+	private JButton loginB, cancelB;
+	private String id,pw;
+	
+	public Login() {
+		this.setLayout(null);
+		setBounds(700,350,300,300);
+		Decima
+		idL = new JLabel("아이디");
+		pwL = new JLabel("비밀번호");
+		idTF = new JTextField();
+		pwTF = new JTextField();
+		loginB = new JButton("로그인");
+		cancelB = new JButton("취소");
+		
+		idL.setBounds(30,80,50,40);
+		pwL.setBounds(30,120,60,40);
+		
+		idTF.setBounds(90,80,100,30);
+		pwTF.setBounds(90,120,100,30);
+		
+		loginB.setBounds(50,160, 80,30);
+		cancelB.setBounds(150,160, 80,30);
+		
+		
+		Container c = this.getContentPane();
+		c.add(idL); c.add(idTF); 
+		c.add(pwL); c.add(pwTF);
+		c.add(loginB); c.add(cancelB);
+		
+		setVisible(true);
+		addWindowListener(new WindowExit());
+		loginB.addActionListener(this);
+		cancelB.addActionListener(this);
+	}
+	
+	public static void main(String[] args) {
+		new Login();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == loginB){
+			id = idTF.getText();
+			pw = pwTF.getText();
+			LoginResult lr = new LoginResult(id,pw);
+		}else if(e.getSource() == cancelB) {
+			idTF.setText("");
+			pwTF.setText("");
+		}
+	}
+}

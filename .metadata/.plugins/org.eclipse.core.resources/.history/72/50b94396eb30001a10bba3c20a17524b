@@ -1,0 +1,70 @@
+package interface_1;
+
+public class Snippet {
+	JFrame jf;
+		JButton[] jb;
+		JLabel[] jl;
+		
+		
+		public CalcMenu(){
+			jf = new JFrame();
+			jb = new JButton[18];
+			jl = new JLabel[2];
+			
+			int x=10; int y=140;
+			
+			jf.setLayout(null);
+			Font font = new Font("글씨체", Font.CENTER_BASELINE, 15);
+			
+			for(int i =0;i<jl.length;i++) { // JLabel
+				if(i==0) { jl[i] = new JLabel("");jl[i].setBounds(10,10,265,30);}
+				else { jl[i] = new JLabel("0"); jl[i].setBounds(10,50,265,30);}
+				jl[i].setOpaque(true);
+				jl[i].setBackground(Color.lightGray);
+				jl[i].setFont(font);
+				jl[i].setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+				
+				jf.add(jl[i]);
+			}
+			
+			String[] title = {"7","8","9","/","4","5","6","X","1","2","3","-",".","0","=","+","BackSpace","C"};
+			for(int i=1;i<jb.length+1;i++) {
+				jb[i-1] = new JButton();
+				jb[i-1].setText(title[i-1]);
+				if(i-1<16) {
+					jb[i-1].setBounds(x,y,59,59); // 10 150
+					x+=69;
+					if(i%4==0) {
+						y+=69;
+						x=10;
+					}
+				}else {
+					if(i-1 == 16)	jb[i-1].setBounds(10,90,125,40);
+					else jb[i-1].setBounds(150,90,125,40);
+					// 10,150,40,40
+				} 
+				jf.add(jb[i-1]);
+			}
+	
+			jf.setTitle("계산기");
+			jf.setBounds(700,500,289,445);
+			jf.setResizable(false);
+	
+			
+			jf.setVisible(true);
+			
+			jf.addWindowListener(new WindowAdapter() { // x버튼 종료
+				@Override
+				public void windowClosing(WindowEvent e) {
+					System.exit(0);
+				}
+			});
+			
+			//////////////////////
+			for(int i = 0; i<jb.length;i++) {
+				jb[i].addActionListener(this);
+			}
+		}
+	
+}
+

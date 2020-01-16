@@ -1,0 +1,17 @@
+package interface_1;
+
+public abstract class PaintFrame {
+	public static final PaintFrame paintFrame;
+	static {
+		paintFrame = null;
+	}
+	
+	public static PaintFrame call() {
+		return paintFrame;
+	}
+	
+	public void msFrame() {
+		
+	}
+	
+}

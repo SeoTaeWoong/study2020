@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;second&apos; in &apos;method.Practice3.main(...)&apos; to &apos;second_total&apos;&#x0D;&#x0A;- Original project: &apos;02_method&apos;&#x0D;&#x0A;- Original element: &apos;method.Practice3.main(String[]).second&apos;&#x0D;&#x0A;- Renamed element: &apos;second&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;second&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;method{Practice3.java[Practice3~main~\[QString;@second!745!774!752!757!QString;!0!false" name="second_total" references="true" stamp="1576658166837" version="1.0"/>
+</session>

@@ -1,0 +1,15 @@
+package network;
+
+import java.net.URL;
+
+public class URLTest2 {
+	public static void main(String[] args) {
+		//https://www.tiffany.kr/jewelry/shop/rings/
+		//18k개수  27개가 답 대소문자 전부
+		
+		
+		URL url = new URL("https://www.tiffany.kr/jewelry/shop/rings");
+		
+	
+	}
+}

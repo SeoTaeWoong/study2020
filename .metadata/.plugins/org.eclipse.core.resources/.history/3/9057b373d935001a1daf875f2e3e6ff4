@@ -1,0 +1,45 @@
+package collection;
+
+import java.util.Scanner;
+import java.util.Stack;
+import static java.lang.System.out;
+
+public class StrackTest {
+
+	public static void main(String[] args) {
+		//String[] groupA = {"우스베키스타", "쿠웨이트","사우디","대한민국"};
+		Stack<String> stack = new Stack<String>();
+		
+		//for(int i=0; i<groupA.length; i++)
+			stack.push("이형");
+		stack.push("삼형");
+		stack.push("사형");
+		
+		out.println(stack.pop());
+		out.println(stack.pop());
+		out.println(stack.pop());
+		
+//		while(! stack.isEmpty())
+//			out.println(stack.pop() );
+		
+		Stack<Boolean> a = new Stack<Boolean>();
+		a.push(true);
+		a.push(true);
+		a.push(true);
+		a.push(false);
+		a.push(true);
+		a.push(false);
+		a.push(true);
+		a.push(true);
+		a.push(true);
+		a.push(true);
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			while(a.pop()) {
+				System.out.println("true");
+			}
+			System.out.println("false");
+		}
+	}
+
+}

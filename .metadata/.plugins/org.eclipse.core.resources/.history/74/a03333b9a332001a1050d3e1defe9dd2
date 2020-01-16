@@ -1,0 +1,17 @@
+package thread;
+
+public class ATMTest implements Runnable{
+	private long deposteMoney = 100000;
+	private long balance;
+	
+	public static void main(String[] args) {
+		Thread mom = new Thread(new ATMTest());
+		Thread son = new Thread(new ATMTest());
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+}

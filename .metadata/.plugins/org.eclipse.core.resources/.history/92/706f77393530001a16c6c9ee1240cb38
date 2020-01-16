@@ -1,0 +1,14 @@
+package interface_1;
+
+public class Outer {
+
+	private String name;
+	
+	class Inner{
+		private int age;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

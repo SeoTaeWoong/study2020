@@ -1,0 +1,56 @@
+package nested;
+
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class cc extends JFrame {
+	
+	JPanel main_panel; // 버튼을 붙여질 메인 패널 선언
+
+	JLabel lb_text1, lb_text2; // 라벨1,2 선언
+	
+	public cc() {
+		if(symbol.equals("=")) {
+			jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+			temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+		}
+		if(count == 0) {
+			if(zero_count == 1 || zero_count == 0) {
+				num = "3";
+				jl[0].setText(num);
+				s_temp = "3";
+				jl[1].setText(s_temp);
+				zero_count=2;
+			}else {
+				num = num + "3";
+				jl[0].setText(num);
+				s_temp = s_temp + "3";
+				jl[1].setText(s_temp);
+				zero_count=2;
+			}
+		}else if(count >= 1) {
+			if(zero_count == 1|| zero_count == 0) {
+				s_temp = "3";
+				num = num1 + Integer.parseInt(s_temp);
+				jl[0].setText(num);
+				jl[1].setText(s_temp);
+				count++;
+				zero_count=2;
+			}else {
+				num = num + "3";
+				jl[0].setText(num);
+				s_temp = s_temp + "3";
+				jl[1].setText(s_temp);
+				count++;
+				zero_count=2;
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		new cc();
+	}
+}

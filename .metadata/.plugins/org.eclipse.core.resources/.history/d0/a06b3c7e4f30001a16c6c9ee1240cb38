@@ -1,0 +1,29 @@
+package nested;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class Card {
+	private Frame frame;
+	
+	public Card() {
+		frame = new Frame();
+		
+		frame.setTitle("¿¬½À");
+		frame.setBounds(700,300,300,300);
+		frame.setVisible(true);
+		
+		frame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
+	}
+	
+	public static void main(String[] args) {
+		new Card();
+	}
+}

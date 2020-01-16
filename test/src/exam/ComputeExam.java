@@ -1,0 +1,8 @@
+package exam;
+class ComputeExam {
+	public static void main(String[] args){
+	
+	System.out.println("백의자리 = "+(576/100)+"\n십의자리 = "+(576%100/10) +"\n일의자리 = "+(576%10) );
+
+	}
+}

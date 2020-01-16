@@ -1,0 +1,9 @@
+package io;
+
+import java.io.DataOutputStream;
+
+public class DataStream {
+	public static void main(String[] args) {
+		DataOutputStream dos = new DataOutputStream(new FileOutputStream("result.txt"));
+	}
+}

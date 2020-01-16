@@ -1,0 +1,28 @@
+package io;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class ObjectMain {
+	
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+//		PersonDTO dto = new PersonDTO("ȫ�浿", 23, 170.879999);
+//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("result2.txt"));
+//		oos.writeObject(dto);
+//		oos.close();
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("result.txt"));
+
+		
+		
+		System.out.println(ois.readObject());
+		System.out.println();
+		System.out.println();
+		
+		ois.close();
+	}
+}

@@ -1,0 +1,32 @@
+package interface_1;
+
+public class Outer {
+
+	private String name;
+	
+	public void output() {
+		System.out.println("이름 ="+name+"\t나이"+new Inner().age);
+	}
+	
+	class Inner{
+		private int age;
+		public void disp() {
+			System.out.println("이름 ="+Outer.this.name+"\t나이"+age);
+			output();
+		}
+	}
+	
+	static class SInner{
+		
+	}
+	
+	public static void main(String[] args) {
+		Outer o = new Outer();
+		Outer.Inner oi = new Outer().new Inner();
+		o.output();
+		o.name = "고길동";
+		Outer.Inner o1 = o.new Inner();
+		
+		
+	}
+}

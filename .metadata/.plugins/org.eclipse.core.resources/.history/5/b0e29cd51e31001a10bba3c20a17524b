@@ -1,0 +1,51 @@
+package collection;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class PersonSort {
+
+	public static void main(String[] args) {
+		String[] ar = {"orange","apple","banana","pear","peach","applemango"};
+		
+		System.out.print("정렬 전 = ");
+		for(String data : ar) {
+			System.out.print(data+"  ");
+		}
+		System.out.println();
+		
+		Arrays.sort(ar);
+
+		System.out.print("정렬 후 = ");
+		for(String data : ar) {
+			System.out.print(data+"  ");
+		}
+		System.out.println();
+		
+		PersonDTO aa = new PersonDTO("홍가",32);
+		PersonDTO bb = new PersonDTO("엄가",25);
+		PersonDTO cc = new PersonDTO("황가",57);
+
+		ArrayList<PersonDTO> list = new ArrayList<PersonDTO>();
+		list.add(aa);
+		list.add(bb);
+		list.add(cc);
+		System.out.println("정렬 전: "+list);
+		
+		Collections.sort(list);
+		System.out.println("정렬 후: "+list);
+		
+		//정렬 기준을 이름ㅇ로 변경
+		Comparator<PersonDTO> com = new Comparator<PersonDTO>() {
+
+			@Override
+			public int compare(Object o1, Object o2) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+		};
+	}
+}

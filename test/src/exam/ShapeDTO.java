@@ -1,0 +1,93 @@
+package exam;
+
+import java.awt.Color;
+
+public class ShapeDTO {
+	private int x1T,y1T,x2T,y2T,z1T,z2T;
+	private Color color;
+	private String shape;
+	private boolean fill;
+	
+
+	
+	public ShapeDTO(int x1T,int y1T,int x2T,int y2T,int z1T,int z2T,Color color, String shape, boolean fill) {
+		this.x1T = x1T;
+		this.y1T = y1T;
+		this.x2T = x2T;
+		this.y2T = y2T;
+		this.z1T = z1T;
+		this.z2T = z2T;
+		this.color = color;
+		this.shape = shape;
+		this.fill = fill;
+		
+	}
+	public int getX1T() {
+		return x1T;
+	}
+
+	public void setX1T(int x1t) {
+		x1T = x1t;
+	}
+
+	public int getY1T() {
+		return y1T;
+	}
+
+	public void setY1T(int y1t) {
+		y1T = y1t;
+	}
+
+	public int getX2T() {
+		return x2T;
+	}
+
+	public void setX2T(int x2t) {
+		x2T = x2t;
+	}
+
+	public int getY2T() {
+		return y2T;
+	}
+
+	public void setY2T(int y2t) {
+		y2T = y2t;
+	}
+
+	public int getZ1T() {
+		return z1T;
+	}
+
+	public void setZ1T(int z1t) {
+		z1T = z1t;
+	}
+
+	public int getZ2T() {
+		return z2T;
+	}
+
+	public void setZ2T(int z2t) {
+		z2T = z2t;
+	}
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	public String getShape() {
+		return shape;
+	}
+	public void setShape(String shape) {
+		this.shape = shape;
+	}
+	public boolean getFill() {
+		return fill;
+	}
+	public void setFill(boolean fill) {
+		this.fill = fill;
+	}
+
+	
+
+}

@@ -1,0 +1,12 @@
+package nested;
+
+public class AbstractMain {
+	public static void main(String[] args) {
+		AbstractTest at = new AbstractTest() {//익명 이너 클래스
+			@Override
+			public void setName(String name) {
+				this.name = name;
+			}
+		};
+	}
+}

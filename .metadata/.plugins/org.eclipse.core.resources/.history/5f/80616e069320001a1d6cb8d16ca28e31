@@ -1,0 +1,21 @@
+package instance;
+
+public class CompTest {
+	
+	public static void main(String[] args) {
+		
+		int score = 60;
+		
+		String result = score >=80 && score <=100 ? "ÇÕ°Ý" : "ºÒÇÕ°Ý";
+		System.out.println(score >=80 && score <=100 ? "ÇÕ°Ý" : "ºÒÇÕ°Ý");
+		System.out.println("°á°ú:"+result);
+		
+		result = score%2==0 && score !=0 ? "Â¦¼ö": "È¦¼ö";
+		System.out.println("È¦Â¦ °á°ú: "+result);
+		
+		int b = 80;
+		
+		System.out.println(score < b ? b:score);
+		
+	}
+}

@@ -1,0 +1,15 @@
+package exam;
+
+public class TestSeo {
+	public static void main(String[] args) {
+		
+		String a = new String();
+		a = "100";
+		String b ="200";
+		String c;
+		System.out.println("¹®Á¦ 1.");
+		c = a+b;
+		
+		
+	}
+}

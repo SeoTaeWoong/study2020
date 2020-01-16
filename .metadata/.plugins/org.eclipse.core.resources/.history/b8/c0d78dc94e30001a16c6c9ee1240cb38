@@ -1,0 +1,17 @@
+package nested;
+import java.awt.Frame;
+
+
+public class Card {
+	private Frame frame;
+	
+	public Card() {
+		frame.setTitle("¿¬½À");
+		frame.setBounds(700,300,300,300);
+		frame.setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,22 @@
+package swing;
+
+import java.awt.Container;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JProgressBar;
+
+public class JProgressBarEx extends JFrame implements ActionListener, Runnable{
+	
+	private JProgressBar jpb = new JProgressBar(JProgressBar.HORIZONTAL,0,100);
+	private JButton startB = new JButton("Ω√¿€");
+	private JButton stopB = new JButton("∏ÿ√„");
+	
+	public JProgressBarEx() {
+		super("test");
+		Container con = getContentPane();
+		con.setLayout(new BorderLayout());
+	}
+	
+}

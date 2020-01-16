@@ -1,0 +1,13 @@
+package instance;
+
+public class Variable2 {
+	int a=1; // field 전역번수
+	
+	public static void main(String[] args) {
+		int a=5; // local variable(지역변수) 초기화를 하지 않으면 쓰래기값이 들어간다.
+		Variable2 va = new Variable2();
+		
+		System.out.println("지역a = "+a);
+		System.out.println("필드a = "+va.a);
+	}
+}

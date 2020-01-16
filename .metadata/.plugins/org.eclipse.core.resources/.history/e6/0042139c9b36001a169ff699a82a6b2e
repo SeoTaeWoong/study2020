@@ -1,0 +1,8 @@
+package io;
+
+public class ObjectMain {
+	
+	public static void main(String[] args) {
+		PersonDTO dto = new PersonDTO("ȫ�浿", 23, 170.879999);
+	}
+}

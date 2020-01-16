@@ -1,0 +1,24 @@
+package galaga;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
+public class GalagaCanvas extends Canvas{
+	
+	GalagaView gv;
+	public GalagaCanvas(GalagaView gv) {
+		this.gv = gv;
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		Image image = getToolkit().getDefaultToolkit().getImage("image/Falcon.png");
+		
+		g.drawImage(image, gv.getWidth()/2,550,gv.getWidth()/2+50,600,0,0,100,150,this);
+	}
+	
+	
+}

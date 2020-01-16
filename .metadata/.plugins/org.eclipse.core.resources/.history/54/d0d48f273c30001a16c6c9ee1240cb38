@@ -1,0 +1,21 @@
+package nested;
+
+public class AbstractMain {
+	public static void main(String[] args) {
+		AbstractTest at = new AbstractTest() {//익명 이너 클래스
+			@Override
+			public void setName(String name) {
+				this.name = name;
+			}
+		};
+	
+	
+	//인터페이스는 new가 되지 않는다
+	//아래 예시는 {}를 new 해준것이다.
+		InterA aa = new InterA() {
+			public void aa() {}
+			public void bb() {}
+		};
+		AbstractExam ae = new AbstractExam();
+	}
+}

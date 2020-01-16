@@ -1,0 +1,33 @@
+package thread;
+
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class Clock extends Frame implements Runnable{
+	public Clock() {
+		setBounds(700,300,300,100);
+		setVisible(true);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		SimpleDateFormat simpleDataFormat = new SimpleDateFormat("HH½ÃmmºÐss");
+		Calendar c = Calendar.getInstance();
+		//run();
+		g.drawString(""+simpleDataFormat.format(c.getTime()), 110, 50);
+	}
+	public static void main(String[] args) {
+		new Clock();
+		
+	}
+
+	@Override
+	public void run() {
+		repaint();
+		System.out.println("1");
+	}
+}

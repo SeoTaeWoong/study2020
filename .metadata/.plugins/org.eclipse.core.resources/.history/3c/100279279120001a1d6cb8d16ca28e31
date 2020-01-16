@@ -1,0 +1,14 @@
+package instance;
+
+public class CompTest {
+	
+	public static void main(String[] args) {
+		
+		int score = 80;
+		
+		String a = score >=80 && score <=100 ? "합격" : "불합격";
+		System.out.println(score >=80 && score <=100 ? "합격" : "불합격");
+		System.out.println(a);
+		
+	}
+}

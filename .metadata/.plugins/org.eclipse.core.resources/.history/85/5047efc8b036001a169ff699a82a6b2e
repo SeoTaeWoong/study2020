@@ -1,0 +1,141 @@
+package io;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ScoreForm extends JFrame implements ActionListener{
+	
+	private JLabel hakL, nameL, korL, engL, mathL;
+	private JTextField hakT, nameT, korT, engT, mathT; 
+	//private JTable view;
+	private JTextArea output;
+	private JButton inputB, outputB, searchB, rankB, saveB, loadB;
+	
+	private JPanel incomP,btnP,viewP;
+	
+	private ScoreImpl si;
+	
+	public ScoreForm() {
+		si = new ScoreImpl();
+		
+		setBounds(700,300,650,240);
+		
+		setLayout(null);
+		
+		hakL=new JLabel("학번");	nameL=new JLabel("이름");
+		korL=new JLabel("국어");	engL=new JLabel("영어");	mathL=new JLabel("수학");
+		
+		hakT=new JTextField(20);	nameT=new JTextField(20);
+		korT=new JTextField(20);	engT=new JTextField(20);	mathT=new JTextField(20);
+		
+		inputB = new JButton("입력");	outputB  = new JButton("출력");	searchB = new JButton("검색");
+		rankB  = new JButton("순위");	saveB = new JButton("파일 저장");	loadB = new JButton("파일 읽기");
+		
+		incomP = new JPanel();	btnP = new JPanel(new GridLayout(1,6));	viewP = new JPanel();
+		incomP.setBounds(10,10,280,150);
+		btnP.setBounds(0,160,635,40);
+		
+		///나중에 바꿀곳--------------------------------
+		output = new JTextArea("");
+		viewP.setLayout(new BorderLayout());
+		viewP.add(output);
+		viewP.setBounds(300,10,300,130);
+		//
+		
+		incomP.add(hakL);	incomP.add(hakT);	incomP.add(nameL);	incomP.add(nameT);
+		incomP.add(korL);	incomP.add(korT);	incomP.add(engL);	incomP.add(engT);
+		incomP.add(mathL);	incomP.add(mathT);
+		
+		btnP.add(inputB);	btnP.add(outputB);	btnP.add(searchB);	
+		btnP.add(rankB);	btnP.add(saveB);	btnP.add(loadB);
+		
+		Container con = getContentPane();
+		con.add(incomP);
+		con.add(viewP);
+		con.add(btnP);
+		
+		setVisible(true);
+		event();
+	}
+
+	
+
+	
+	public void event(){
+		inputB.addActionListener(this); 
+		outputB.addActionListener(this);
+		searchB.addActionListener(this);
+		rankB.addActionListener(this);
+		saveB.addActionListener(this);
+		loadB.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		ScoreDTO dto = new ScoreDTO();
+		
+		if(e.getSource() == inputB) {
+			dto.setHak(hakT.getText());
+			dto.setName(nameT.getText());
+			dto.setKor(Integer.parseInt(korT.getText()));
+			dto.setEng(Integer.parseInt(engT.getText()));
+			dto.setMath(Integer.parseInt(mathT.getText()));
+			
+			si.input(dto);
+		}else if(e.getSource() == outputB) {
+			si.print(output);
+		}else if(e.getSource() == searchB) {
+			
+		}else if(e.getSource() == rankB) {
+			
+		}else if(e.getSource() == saveB) {
+			
+		}else if(e.getSource() == loadB) {
+			
+		}
+	}
+	
+	public JTextField getHakT() {
+		return hakT;
+	}
+
+
+	public JTextField getNameT() {
+		return nameT;
+	}
+
+
+	public JTextField getKorT() {
+		return korT;
+	}
+
+
+	public JTextField getEngT() {
+		return engT;
+	}
+
+	public JTextField getMathT() {
+		return mathT;
+	}
+
+
+	public JTextArea getOutputT() {
+		return output;
+	}
+	
+	public static void main(String[] args) {
+		new ScoreForm();
+	}
+
+}

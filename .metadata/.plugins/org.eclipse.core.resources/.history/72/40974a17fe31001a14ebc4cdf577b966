@@ -1,0 +1,10 @@
+package collection;
+
+public class SungJukMain {
+	public static void main(String[] args) {
+		SungJukService service = new SungJukService();
+		service();
+		System.out.println("프로그램 종료");
+		
+	}
+}

@@ -1,0 +1,147 @@
+package thread;
+
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Random;
+
+public class Packman extends Frame implements KeyListener, Runnable{
+	private Image img;
+	private int sel;
+	private int x,y;
+	private int mx,my;
+	private int xyA[][];
+	private int cnt = 0;
+	
+	public Packman() {
+		x=220; y=220;
+		setBounds(900,300,500,500);
+		setResizable(false);
+		setVisible(true);
+		xyA = new int[5][2];
+		for(int i = 0; i<5; i++) {
+			for(int j = 0; j<2; j++) {
+				xyA[i][j] = ((int)(Math.random()*460+20))/10*10;
+				System.out.println("x: "+xyA[i][j]+"  y: "+xyA[i][j]);
+			}
+		}
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		addKeyListener(this);
+		Thread t = new Thread(this);
+		t.start();
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		img = Toolkit.getDefaultToolkit().getImage("packman.jpg");
+			
+		for(int i = 0; i<5; i++) {
+			for(int j =0; j<1; j++) {
+				g.drawString("★",xyA[i][j],xyA[i][j+1]);
+			}
+		}
+			cnt++;
+		
+		g.drawImage(img, 
+				x,y,x+50,y+50, // 화면의 위치
+				sel*50,0,sel*50+50,50,//이미지 위치 좌표
+				this);
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) { // 키의 종류
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void run() {
+		while(true) {
+			
+			if(sel%2==0)sel++;
+			else sel--;
+			
+			x+=mx;
+			y+=my;
+			
+			if(x > 540) {
+				x=-40;
+			}else if(x<-40) {
+				x=500;
+			}else if(y>540) {
+				y=-40;
+			}else if(y<-40) {
+				y=500;
+			}
+			// 10이 xyA가 보다 작고  30이 xyA보다 클때 
+			
+			for(int i =0; i<5;i++) {
+				if(x+10<xyA[i][0]&&x+40>xyA[i][0]&& y+10<xyA[i][1]&&y+40>xyA[i][1]) {
+					System.out.println("PacX: "+x+"  PacY: "+y);
+					System.out.println("DelX: "+xyA[i][0]+"  DelY: "+xyA[i][1]);
+					xyA[i][0]=0;
+					xyA[i][1]=0;
+					
+				}
+			}
+				
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			repaint();
+		}
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) { //키가 눌렸을때
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_ESCAPE ) System.exit(0);
+		else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
+			sel =0;
+			mx = -10; my=0;
+		}
+		else if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			sel =2;
+			mx = +10; my=0;
+			
+		}else if(e.getKeyCode()==KeyEvent.VK_UP) {
+			sel =4;
+			mx = 0; my=-10;
+		}else if(e.getKeyCode()==KeyEvent.VK_DOWN) {
+			sel =6;
+			mx = 0; my=10;
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) { //키가 눌렸다가 땟을때
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+	
+	
+	
+	// --- 메인-------------
+	public static void main(String[] args) {
+		new Packman();
+	}
+
+}

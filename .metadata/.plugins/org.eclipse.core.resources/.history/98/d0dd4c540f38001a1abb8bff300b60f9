@@ -1,0 +1,15 @@
+package network;
+
+import java.net.Socket;
+
+public class ProtocolClient {
+	private Socket socket;
+	
+	public ProtocolClient() {
+		
+	}
+	
+	public static void main(String[] args) {
+		new ProtocolClient();
+	}
+}

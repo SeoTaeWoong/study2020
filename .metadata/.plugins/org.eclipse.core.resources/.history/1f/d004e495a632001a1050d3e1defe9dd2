@@ -1,0 +1,41 @@
+package thread;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ATMTest implements Runnable{
+	private long depositeMoney = 100000;
+	private long balance;
+	
+	public static void main(String[] args) {
+		ATMTest atm =new ATMTest();
+		Thread mom = new Thread(atm);
+		Thread son = new Thread(atm);
+	
+		mom.start();
+		mom.setName("mom");
+		son.start();
+		son.setName("son");
+	}
+
+	@Override
+	public synchronized void run() {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				
+		System.out.println(Thread.currentThread().getName());
+		try{
+			System.out.println("찾고자 하는 금액 입력: ");
+			balance = Long.parseLong(br.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		withDraw();
+	}
+	
+	public void withDraw() {
+		if((depositeMoney = depositeMoney-balance) != 0) System.out.println("잔액은"+balance+" 입니다.");
+	}
+}

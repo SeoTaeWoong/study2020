@@ -1,0 +1,13 @@
+package io;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class ByteStream {
+	public static void main(String[] args) throws FileNotFoundException {
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream("data1.txt"));
+		
+		System.out.println(bis.read());
+	}
+}

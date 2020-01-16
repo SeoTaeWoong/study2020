@@ -1,0 +1,18 @@
+package exception;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+public class ExceptionTest2 {
+	
+	private int dan;
+	
+	public void input() {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	}
+	public static void main(String[] args) {
+		
+		Scanner 
+	}
+}

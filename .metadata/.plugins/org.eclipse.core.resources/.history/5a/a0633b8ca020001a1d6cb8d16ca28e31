@@ -1,0 +1,9 @@
+package instance;
+
+public class Practice6 {
+	public static void main(String[] args) {
+		char ch = 'T';
+		
+		System.out.println(ch+32);
+	}
+}

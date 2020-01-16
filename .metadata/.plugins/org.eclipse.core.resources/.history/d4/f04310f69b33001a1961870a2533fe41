@@ -1,0 +1,121 @@
+package swing;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+public class MSPaint extends JFrame implements ActionListener{
+	private JLabel x1L, y1L, x2L, y2L, z1L, z2L;
+	private JTextField x1T, y1T, x2T, y2T, z1T, z2T;
+	private JPanel[] p;
+	private JCheckBox fill;
+	private JRadioButton line, circle, rect, roundRect;
+	private ButtonGroup bg;
+	private JPanel panel;
+	private JComboBox<String> combo;
+	private JButton draw;
+	private DrCanvas can;
+	
+	private boolean cFILL = true; 
+	
+	
+	public MSPaint() {
+		Container con = this.getContentPane();
+		
+		setLayout(null);
+		x1L = new JLabel("x1L");	x2L = new JLabel("x2L");
+		y1L = new JLabel("y1L");	y2L = new JLabel("y2L");
+		z1L = new JLabel("z1L");	z2L = new JLabel("z2L");
+		
+		x1T = new JTextField(3);		x2T = new JTextField(3);
+		y1T = new JTextField(3);		y2T = new JTextField(3);
+		z1T = new JTextField(3);		z2T = new JTextField(3);
+		p = new JPanel[6];
+		for(int i=0; i <p.length; i++) p[i]= new JPanel();
+		 
+		p[0].setBounds(10,10,70,30);
+		p[0].add(x1L);		p[0].add(x1T);
+		
+		p[1].setBounds(90,10,70,30);
+		p[1].add(x2L);		p[1].add(x2T);
+		
+		p[2].setBounds(170,10,70,30);
+		p[2].add(y1L);		p[2].add(y1T);
+		
+		p[3].setBounds(250,10,70,30);
+		p[3].add(y2L);		p[3].add(y2T);
+		
+		p[4].setBounds(330,10,70,30);
+		p[4].add(z1L);		p[4].add(z1T);
+
+		p[5].setBounds(410,10,70,30);
+		p[5].add(z2L);		p[5].add(z2T);
+
+		for(int i =0; i<p.length; i++) {p[i].setBackground(Color.WHITE);con.add(p[i]);}  // 라벨 텍스트필드 끝
+		
+		fill = new JCheckBox("채우기");			//채우기 끝
+		fill.setBounds(510,10,100,30);
+		add(fill);
+		
+		line = new JRadioButton("선");	circle = new JRadioButton("원");  // 라디오 시작
+		rect = new JRadioButton("사각형");	roundRect = new JRadioButton("둥근사각형");
+		
+		bg = new ButtonGroup();
+		bg.add(line);	bg.add(circle);
+		bg.add(rect);	bg.add(roundRect);
+		panel = new JPanel();
+		panel.setBounds(10,300,280,40);
+		panel.add(line);	panel.add(circle);
+		panel.add(rect);	panel.add(roundRect);
+		rect.setSelected(true);			
+		con.add(panel);														// 라디오 끝
+		
+		
+		Vector<String> v = new Vector<String>();			//콤보박스 시작
+		
+		combo = new JComboBox<String>(v);
+		v.add("빨강"); v.add("초록");
+		v.add("파랑"); v.add("보라");
+		v.add("하늘"); v.add("검정");
+		combo.setBounds(310,310,60,20);
+		combo.setSelectedIndex(5);
+		con.add(combo);											//콤보박스 끝
+	
+		draw = new JButton("그리기");
+		draw.setBounds(400,305,90,30);
+		con.add(draw);
+		
+		setBounds(700,300,600,400);
+		draw.addActionListener(this);
+		setVisible(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		new MSPaint();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == fill) {
+			
+		}
+		if(e.getSource()==draw) {
+			
+			new DrCanvas(x1L.getText(), x2L.getText(), y1L.getText(), y2L.getText());
+		}
+	}
+}

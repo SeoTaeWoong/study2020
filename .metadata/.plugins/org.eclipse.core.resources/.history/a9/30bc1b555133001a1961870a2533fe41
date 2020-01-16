@@ -1,0 +1,19 @@
+package swing;
+
+import java.awt.FlowLayout;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+
+public class JListEx extends JFrame{
+	public JListEx() {
+		setTitle("JList Test");
+		setLayout(new FlowLayout());
+		
+		
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		JList<String> list2 = new JList<String>(model);
+		model.add("»ç°ú"); 
+	}
+}

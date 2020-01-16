@@ -1,0 +1,105 @@
+package swing;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+
+public class JTableEx2 extends JFrame{
+	private ArrayList<PersonDTO> list;
+	private Vector<String> vector;
+	private DefaultTableModel model;
+	private JTable table;
+	private JScrollPane scroll;
+	private JButton insertBtn, deleteBtn;
+	private JPanel p;
+	
+	Scanner sc = new Scanner(System.in);
+	
+	public JTableEx2(){
+		list = new ArrayList<PersonDTO>();
+		list.add(new PersonDTO("hong","홍길동","111","010-123-1234"));
+		list.add(new PersonDTO("umji","주엄지","123","010-9602-0202"));
+		
+		//제목
+		vector = new Vector<String>();
+		vector.addElement("아이디");
+		vector.addElement("이름");
+		vector.add("비밀번호");
+		vector.add("전화번호");
+		
+		model = new DefaultTableModel(vector,0) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return column!=0 ? true: false;
+			}
+		};// 빈 행의 수를 의미한다.
+		
+		//데이타ㅏㅏ
+		for(PersonDTO data : list) {
+			Vector<String> v = new Vector<String>();
+			v.add(data.getId());
+			v.add(data.getName());
+			v.add(data.getPwd());
+			v.add(data.getTel());
+			
+			model.addRow(v);
+		}
+		
+		insertBtn = new JButton("추가");
+		insertBtn.setBounds(320,350,30,30);
+		deleteBtn = new JButton("삭제");
+		deleteBtn.setBounds(360,350,30,30);
+		
+		p = new JPanel();
+		p.setLayout(new FlowLayout());
+		p.add(insertBtn);
+		p.add(deleteBtn);
+		Container c = getContentPane();
+		
+		
+		table = new JTable(model);
+		scroll = new JScrollPane(table);
+		
+		add("Center",scroll);
+		add("South",p);
+		setBounds(600,200,400,300);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public void insert() {
+		//같은 아이디가 있으면 "중복된 아이디입니다.
+		
+		String id = JOptionPane.showInputDialog(this,"아이디를 입력하시오. >>");
+		for(PersonDTO data : list) {
+			if(data.getId()==id) {
+				JOptionPane.showMessageDialog(this, "중복된 아이디 입니다.");
+				return;
+			}
+		}
+		String name = JOptionPane.showInputDialog(this,"이름을 입력하시오. >>");
+		String pwd = JOptionPane.showInputDialog(this,"비밀번호를 입력하시오. >>");
+		String tel = JOptionPane.showInputDialog(this,"휴대폰 번호를 입력하시오. >>");
+		list.add(new PersonDTO(id,name,pwd,tel));
+	}
+	
+	public void delete() {
+		String name = JOptionPane.showInputDialog(this,"삭제할 이름을 입력하시오. >> ");
+	}
+	
+	public static void main(String[] args) {
+		new JTableEx2();
+	}
+}

@@ -1,0 +1,21 @@
+package instance;
+
+public class Variable2 {
+	// 전역변수는 선언과 동시에 0으로 초기화된다
+	int a; // field 전역번수 , 인스턴스 변수
+	static int b; //        클래스 변수
+	String str;
+	static String strr;
+	
+	public static void main(String[] args) {
+		int a=5; // local variable(지역변수) 초기화를 하지 않으면 쓰래기값이 들어간다.
+		int b=0;
+		Variable2 va = new Variable2();
+		
+		System.out.println("지역a = "+a);
+		System.out.println("필드a = "+va.a);
+		System.out.println("필드b = "+Variable2.b);
+		System.out.println("필드str = "+ new Variable2().str);
+		System.out.println("필드str = "+ str);
+	}
+}

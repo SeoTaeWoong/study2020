@@ -1,0 +1,10 @@
+package instance;
+
+public class Variable2 {
+	int a=0; // field 전역번수
+	
+	public static void main(String[] args) {
+		int a=5; // local variable(지역변수)
+		System.out.println("a = "+a);
+	}
+}

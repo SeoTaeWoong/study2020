@@ -1,0 +1,22 @@
+package collection;
+
+public class GenericTest2<T> {
+
+	private T a;
+	
+	public GenericTest2(T a) {
+		
+	}
+	
+	public void setA(T a) {
+		this.a = a;
+	}
+	
+	public T getA() {
+		return a; 
+	}
+	
+	public static void main(String[] args) {
+		GenericTest2<?> aa = new GenericTest2<String>("ȫ�浿");
+	}
+}

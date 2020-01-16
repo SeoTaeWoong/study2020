@@ -1,0 +1,85 @@
+package swing;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.text.StyledEditorKit.BoldAction;
+
+public class Timer extends JFrame implements ActionListener, Runnable{
+	private JButton goBtn;
+	private JButton stopBtn;
+	private JPanel panel1;
+	private JPanel panel2;
+	private JLabel label;
+	private boolean bb;
+	
+	public Timer() {
+		setBounds(900,200,500,500);
+		panel1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		goBtn = new JButton("시작");
+		stopBtn = new JButton("정지");
+		Container con = this.getContentPane();
+		panel1.add(goBtn);
+		panel1.add(stopBtn);
+		label = new JLabel("0");
+		label.setLayout(null);
+		label.setFont(new Font("굴림",Font.BOLD,25));
+		label.setBounds(240,240,60,60);
+//		panel2 = new JPanel();
+//		panel2.setLayout(null);
+//		panel2.setBounds(245, 245, 60, 60);
+//		panel2.add(label);
+		con.add("Center",label);
+		con.add("South",panel1);
+		setVisible(true);
+		goBtn.addActionListener(this);
+		stopBtn.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource()==goBtn) {
+			bb=true;
+			Thread t = new Thread(this);
+			t.start();
+			goBtn.setEnabled(false);
+			stopBtn.setEnabled(true);
+		}else if(e.getSource()==stopBtn) {
+			bb=false;
+			goBtn.setEnabled(true);
+			stopBtn.setEnabled(false);
+		}
+	}
+
+
+	
+	@Override
+	public void run() {
+		for(int i = 1; i<=20; i++) {
+			label.setText(i+"");
+			if(!bb) break;
+			
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		goBtn.setEnabled(true);
+		stopBtn.setEnabled(false);
+	}
+	public static void main(String[] args) {
+		new Timer();
+	}
+
+}

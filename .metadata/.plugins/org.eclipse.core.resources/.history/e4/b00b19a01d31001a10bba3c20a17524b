@@ -1,0 +1,36 @@
+package collection;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class PersonMain {
+
+	public ArrayList<PersonDTO> init() {
+	
+		
+		ArrayList<PersonDTO> list = new ArrayList<PersonDTO>();
+		list.add(aa);
+		list.add(bb);
+		list.add(cc);
+		return list;
+	}
+	public static void main(String[] args) {
+		
+		ArrayList<PersonDTO> list = new PersonMain().init();
+		
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		System.out.println("-----------------------");
+		for(PersonDTO data : list) {
+			System.out.println(data);
+		}
+		System.out.println("-----------------------");
+		Iterator<PersonDTO> it = list.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+				
+		
+	}
+}

@@ -1,0 +1,18 @@
+package project;
+
+public class SdokuAlgorithm {
+	int[][] su;
+	
+	public void input() {
+		su = new int[][];
+		for(int )
+			
+	}
+	
+	public void algorithm() {
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+}

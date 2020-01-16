@@ -1,0 +1,19 @@
+package interface_1;
+
+public class Outer {
+
+	private String name;
+	
+	class Inner{
+		private int age;
+		this.name = "2";
+	}
+	
+	static class SInner{
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

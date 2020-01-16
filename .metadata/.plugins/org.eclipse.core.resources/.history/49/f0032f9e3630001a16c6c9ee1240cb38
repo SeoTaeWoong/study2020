@@ -1,0 +1,27 @@
+package interface_1;
+
+public class Outer {
+
+	private String name;
+	
+	public void output() {
+		System.out.println("이름 ="+name+"\t나이"+new Inner().age);
+	}
+	
+	class Inner{
+		private int age;
+		String name=""
+		this.name = "2";
+		public void disp() {
+			System.out.println("이름 ="+name+"\t나이"+age);
+		}
+	}
+	
+	static class SInner{
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

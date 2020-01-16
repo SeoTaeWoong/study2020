@@ -1,0 +1,39 @@
+package swing;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
+public class JProgressBarEx extends JFrame implements ActionListener, Runnable{
+	
+	private JProgressBar jpb = new JProgressBar(JProgressBar.HORIZONTAL,0,100);
+	private JButton startB = new JButton("Ω√¿€");
+	private JButton stopB = new JButton("∏ÿ√„");
+	
+	public JProgressBarEx() {
+		super("test");
+		Container con = getContentPane();
+		con.setLayout(new BorderLayout());
+		con.add("North", new JLabel("¿Ã∞Õ¿Ã «¡∑Œ±◊∑πΩ∫ πŸ≈¡...."));
+		con.add("Center",jpb);
+		jpb.setStringPainted(true);
+		jpb.setString("0%");
+		
+		JPanel jp = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		jp.add(startB); jp.add(stopB);
+		startB.addActionListener(this);
+		stopB.addActionListener(this);
+		con.add("South",jpb);
+		setSize(300,150);
+		setVisible(true);
+		
+	}
+	
+}

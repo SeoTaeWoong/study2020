@@ -1,0 +1,178 @@
+package project;
+import javax.swing.JFrame;
+
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+public class SdokuMenu extends JFrame implements ActionListener{
+	private Icon iconA = new ImageIcon("A.png");
+	private Icon iconB = new ImageIcon("B.png");
+	private Icon icon1 = new ImageIcon("1.png");
+	private Icon icon2 = new ImageIcon("2.png");
+	private Icon icon3 = new ImageIcon("3.png");
+	private Icon icon4 = new ImageIcon("4.png");
+	private Icon icon5 = new ImageIcon("5.png");
+	private Icon icon6 = new ImageIcon("6.png");
+	private Icon icon7 = new ImageIcon("7.png");
+	private Icon icon8 = new ImageIcon("8.png");
+	private Icon icon9 = new ImageIcon("9.png");
+
+	
+	JRadioButton[][] questionBnt;
+	JRadioButton tempBnt;
+	ButtonGroup bg = new ButtonGroup();
+	Container con = this.getContentPane();
+	JButton[] cleakBnt;
+	JPanel questionP; // 9줄+9줄 문제
+	JPanel cleakP;  //  숫자 입력할 버튼
+	JPanel statusP;  // 이미지 상태창
+	JPanel boardP;	// 채팅
+	
+	public SdokuMenu() {
+		setBounds(700,300,900,600);
+		setLayout(null);
+		panelSet();
+		bntSet();
+		JRadioButton jrb = new JRadioButton();
+		jrb.setPressedIcon(icon1);
+		statusP.add(jrb);
+		
+		add(statusP);
+		add(cleakP);
+		add(questionP);
+
+		for(int i=0; i<questionBnt.length; i++) {
+			for(int j=0; j<questionBnt.length; j++) {
+				questionBnt[i][j].addActionListener(this);
+			}
+		}
+		
+		for(int i=0; i<cleakBnt.length;i++) {
+				
+			cleakBnt[i].addActionListener(this);
+		}
+		setVisible(true);
+	}
+	
+	public void panelSet() {
+		questionP = new JPanel();
+		questionP.setLayout(new GridLayout(9,9,2,2));
+		questionP.setBounds(10,10,540,540);
+		
+		cleakP = new JPanel();
+		cleakP.setLayout(new GridLayout(3,3,2,2));
+		cleakP.setBounds(560,380,170,170);
+		
+		statusP = new JPanel();
+		statusP.setBounds(560, 10, 150, 150);
+		
+		boardP = new JPanel();
+		boardP.setBounds(510, 170, 150,250);
+	}
+	
+	public void bntSet() {
+		
+		//문제 버튼
+		questionBnt = new JRadioButton[9][9];
+		for(int i=0; i<questionBnt.length; i++) {
+			for(int j=0; j<questionBnt.length; j++) {
+				questionBnt[i][j] = new JRadioButton();
+				con.add(questionBnt[i][j]);
+				questionBnt[i][j].setIcon(iconA);
+				questionBnt[i][j].setRolloverIcon(icon2);
+				questionBnt[i][j].setPressedIcon(icon4);
+				questionBnt[i][j].setSelectedIcon(iconB);
+				
+				bg.add(questionBnt[i][j]);
+				questionP.add(questionBnt[i][j]);
+			}
+		}
+		
+		//입력 버튼
+		cleakBnt = new JButton[9];
+		for(int i=0; i<cleakBnt.length;i++) {
+			cleakBnt[i]= new JButton();	
+			cleakP.add(cleakBnt[i]);
+		}
+		
+		tempBnt = new JRadioButton();
+		
+		cleakBnt[0].setIcon(icon1);
+		cleakBnt[1].setIcon(icon2);
+		cleakBnt[2].setIcon(icon3);
+		cleakBnt[3].setIcon(icon4);
+		cleakBnt[4].setIcon(icon5);
+		cleakBnt[5].setIcon(icon6);
+		cleakBnt[6].setIcon(icon7);
+		cleakBnt[7].setIcon(icon8);
+		cleakBnt[8].setIcon(icon9);
+		
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
+		Loop : for(int i=0; i<questionBnt.length; i++) {
+			for(int j=0; j<questionBnt.length; j++) {
+				if(questionBnt[i][j].checkImage(questionBnt[i][j].getSelectedIcon(),iconB)) {
+					tempBnt =questionBnt[i][j];
+					break Loop;
+				}
+			}
+		}
+		
+		for(int i=0; i<cleakBnt.length;i++) {
+			if(e.getSource()==cleakBnt[i]) {
+				if(i==0) {
+					tempBnt.setIcon(icon1);
+					tempBnt.setSelectedIcon(icon1);
+				}else if(i==1) {
+					tempBnt.setIcon(icon2);
+					tempBnt.setSelectedIcon(icon2);
+				}else if(i==2) {
+					tempBnt.setIcon(icon3);
+					tempBnt.setSelectedIcon(icon3);
+				}else if(i==3) {
+					tempBnt.setIcon(icon4);
+					tempBnt.setSelectedIcon(icon4);
+				}else if(i==4) {
+					tempBnt.setIcon(icon5);
+					tempBnt.setSelectedIcon(icon5);
+				}else if(i==5) {
+					tempBnt.setIcon(icon6);
+					tempBnt.setSelectedIcon(icon6);
+				}else if(i==6) {
+					tempBnt.setIcon(icon7);
+					tempBnt.setSelectedIcon(icon7);
+				}else if(i==7) {
+					tempBnt.setIcon(icon8);
+					tempBnt.setSelectedIcon(icon8);
+				}else if(i==8) {
+					tempBnt.setIcon(icon9);
+					tempBnt.setSelectedIcon(icon9);
+				}
+			}
+		}
+		
+
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new SdokuMenu();
+	}
+
+}

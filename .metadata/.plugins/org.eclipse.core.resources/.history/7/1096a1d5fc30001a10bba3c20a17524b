@@ -1,0 +1,30 @@
+package collection;
+
+public class GenericTest2<T> {
+
+	private T a;
+	
+	public GenericTest2(T a) {
+		this.a = a;
+	}
+	
+	public void setA(T a) {
+		this.a = a;
+	}
+	
+	public T getA() {
+		return a; 
+	}
+	
+	public static void main(String[] args) {
+		GenericTest2<?> aa = new GenericTest2<String>("홍길동");
+		//aa.setA("홍길동"); -error <?>오브젝트로 받을때는 생성자를 사용해서 값을 넣어라
+		String name = (String)aa.getA();
+		System.out.println("이름: " +name);
+		Object oname = aa.getA();
+		System.out.println(oname);
+		GenericTest2<?> bb = new GenericTest2<Integer>(25);
+		Integer age = (Integer)bb.getA();
+		System.out.println("나이: "+age);
+	}
+}

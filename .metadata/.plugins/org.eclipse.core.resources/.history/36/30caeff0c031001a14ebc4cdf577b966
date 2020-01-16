@@ -1,0 +1,27 @@
+package study_teacher;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Test07 {
+	public static void main(String[] args) {
+		DecimalFormat df = new DecimalFormat();
+		StringBuffer a = new StringBuffer();
+		int index = 0;
+		
+		a.append(".");
+		System.out.println(df.format(Double.parseDouble("0"+a.toString())));
+		System.out.println(a);
+		/*
+		if(a.length()==0) {
+				
+		}else {
+			a.append(".");
+			System.out.println(df.format(Double.parseDouble(a.toString())));
+		}
+		
+		
+		a.append("1");
+		System.out.println(a.toString());*/
+	}
+}

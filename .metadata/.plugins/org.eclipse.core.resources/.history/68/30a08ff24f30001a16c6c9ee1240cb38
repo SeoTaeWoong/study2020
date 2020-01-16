@@ -1,0 +1,26 @@
+package nested;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+
+
+public class Card {
+	private Frame frame;
+	
+	public Card() {
+		frame = new Frame();
+		
+		frame.setTitle("¿¬½À");
+		frame.setBounds(700,300,300,300);
+		frame.setVisible(true);
+		
+		frame.addWindowListener(new WindowAdapter()
+				
+		});
+	}
+	
+	public static void main(String[] args) {
+		new Card();
+	}
+}

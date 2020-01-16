@@ -1,0 +1,10 @@
+package io;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
+public class ByteStream {
+	public static void main(String[] args) {
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream("data1.txt"))
+	}
+}

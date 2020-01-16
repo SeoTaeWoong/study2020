@@ -1,0 +1,21 @@
+package interface_1;
+import java.awt.Frame;
+
+public abstract class PaintFrame extends Frame {
+	public static final PaintFrame paintFrame;
+	static {
+		paintFrame = null;
+	}
+	
+	public static PaintFrame call() {
+		return paintFrame;
+	}
+	
+	public void msFrame() {
+		super("±×¸²ÆÇ");
+		setBounds(800, 300, 500, 500);
+		
+		setVisible(true);
+	}
+	
+}

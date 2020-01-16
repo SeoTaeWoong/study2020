@@ -1,0 +1,58 @@
+package thread;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Dialog;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JOptionPane;
+
+public class Racer extends Canvas implements Runnable{ // 말 1마리
+	private Image img;
+	private int pos;
+	private static int rank;
+	private static int cnt;
+	private static String result;
+	
+	static {
+		rank=0;
+		cnt=1;
+	}
+	
+	public Racer() {
+		img = Toolkit.getDefaultToolkit().getImage("horse.gif");
+	}
+	@Override
+	public void paint(Graphics g) {
+		g.drawLine(0,getHeight()/2,getWidth(),getHeight()/2);
+		g.drawImage(img, pos,0,25,this.getHeight(),this);
+		//x,y,width,height
+	}
+	@Override
+	public void run() {
+
+		// TODO Auto-generated method stub
+		for(int i = 0; i<=600; i+=(int)(Math.random()*10+1)) {
+			pos = i;
+			repaint();
+			try {
+				Thread.sleep(20);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		rank++;
+		System.out.println(rank);
+		if(rank==cnt) {
+			cnt++;
+			result = rank+"등: "+Thread.currentThread().getName();
+		}
+		JOptionPane jo = new JOptionPane();
+		jo.showMessageDialog(this, rank+"등: "+Thread.currentThread().getName());
+		
+		
+	}
+}

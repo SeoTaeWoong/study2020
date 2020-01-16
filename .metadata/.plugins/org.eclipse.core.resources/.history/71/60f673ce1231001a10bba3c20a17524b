@@ -1,0 +1,31 @@
+package collection;
+
+import java.util.ArrayList;
+
+public class PersonMain {
+
+	public ArrayList init() {
+		PersonDTO aa = new PersonDTO("홍가",25);
+		PersonDTO bb = new PersonDTO("엄가",42);
+		PersonDTO cc = new PersonDTO("황가",57);
+		
+		ArrayList a = new ArrayList();
+		a.add(aa.getName());
+		a.add(aa.getAge());
+		a.add(bb.getName());
+		a.add(bb.getAge());
+		a.add(cc.getName());
+		a.add(cc.getAge());
+		return a;
+	}
+	public static void main(String[] args) {
+		
+		ArrayList c = new PersonMain().init; 
+		for(int i=0; i<a.size(); i++) {
+			System.out.println(a.get(i));
+		}
+		
+				
+		
+	}
+}

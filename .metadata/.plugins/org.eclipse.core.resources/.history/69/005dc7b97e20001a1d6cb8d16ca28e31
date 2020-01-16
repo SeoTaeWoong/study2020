@@ -1,0 +1,11 @@
+package mytestpack;
+
+import exam.Question;
+
+public class TestViewer {
+	Question question = new Question();
+	
+	public static void main(String[] args) {
+		System.out.println(Question.question1());
+	}
+}

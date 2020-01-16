@@ -1,0 +1,27 @@
+package interface_1;
+
+import java.awt.Frame;
+
+public class LoginResult {
+	public static final String id,pw;
+	boolean exit = true;
+	static {
+		id = "Angel";
+		pw = "1004";
+	}
+	public LoginResult(String id,String pw) {
+		Frame f = new Frame();
+		Label l = new Label();
+		if(this.id.equals(id) && this.pw.equals(pw)) {
+			f.setTitle("LoginResult");
+			f.setBounds(640,320,100,100);
+			f.setVisible(exit);
+			
+			System.out.println("로그인 성공");
+			
+			
+		}else {
+			System.out.println("로그인 실패");
+		}
+	}
+}

@@ -1,0 +1,13 @@
+package collection;
+
+public class PersonMain {
+
+	public void init() {
+		PersonDTP aa = new PersonDTO("홍가",25);
+		PersonDTP bb = new PersonDTO("엄가",42);
+		PersonDTP cc = new PersonDTO("황가",57);
+	}
+	public static void main(String[] args) {
+		ArrayList a = new ArrayList();
+	}
+}

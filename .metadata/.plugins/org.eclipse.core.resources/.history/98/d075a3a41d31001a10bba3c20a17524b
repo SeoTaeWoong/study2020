@@ -1,0 +1,29 @@
+package collection;
+
+import java.util.Arrays;
+
+public class PersonSort {
+
+	public static void main(String[] args) {
+		String[] ar = {"orange","apple","banana","pear","peach","applemango"};
+		
+		System.out.print("정렬 전 = ");
+		for(String data : ar) {
+			System.out.print(data+"  ");
+		}
+		System.out.println();
+		
+		Arrays.sort(ar);
+
+		System.out.print("정렬 후 = ");
+		for(String data : ar) {
+			System.out.print(data+"  ");
+		}
+		System.out.println();
+		
+		PersonDTO aa = new PersonDTO("홍가",25);
+		PersonDTO bb = new PersonDTO("엄가",42);
+		PersonDTO cc = new PersonDTO("황가",57);
+		System.out.println(list);
+	}
+}

@@ -1,0 +1,9 @@
+package interface_1;
+
+public abstract class PaintFrame {
+	public static final PaintFrame paintFrame;
+	static {
+		paintFrame = null;
+	}
+	
+}

@@ -1,0 +1,20 @@
+package instance;
+
+public class Practice3 {
+	public static void main(String[] args) {
+		
+		String name = "L";
+		int basePay = 2500000;
+		int tax = basePay*3.3%(0.033);
+		int  salary = basePay-tax;
+		
+		
+		System.out.println("이름이 L인 사람의 기본급이 2500000일때 3.3%의 세금과 월급을 계산하시오.");
+		System.out.println("데이터는 반드시 변수에 저장");
+		
+		System.out.println("****"+name+"의 월급****");
+		System.out.println("기본급 : "+basePay);
+		System.out.println("세금 : " +tax);
+		System.out.println("월급 : "+salary);
+	}
+}

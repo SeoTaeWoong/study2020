@@ -1,0 +1,21 @@
+package instance;
+
+public class Variable {
+	public static void main(String[] args) {
+	//메모리 할당
+		boolean a;
+		a = true ; 
+		System.out.println("a= "+a);
+		
+		char b;
+		b = 'A';
+		System.out.println("b= "+ b);
+		
+		char c;
+		c= 65535;
+		System.out.println("c= "+ c);
+	}
+}
+
+
+

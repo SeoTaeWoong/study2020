@@ -1,0 +1,44 @@
+package question;
+
+public class Result {
+	public static void main(String[] args) {
+		question1();
+		question2();
+		question3();
+	}
+	
+	public static void question3() {
+		
+		int money = 1500000;
+		int bonus = 55000;
+		int tax = money/10;
+		int result = money+bonus-tax;
+		System.out.println("급여명세서를 작성하시오.");
+		System.out.println("\t조건1) 기본급이 1,500,000원 수당이 55,000원 세금이 기본급의 10%");
+		System.out.println("\t조건2) 실수령액 = 기본급+시간수당-세금");
+		
+		System.out.println("--출력--");
+		System.out.println("실수령액: "+ result);
+		
+		
+	}
+	
+	public static void question2() {
+		int money = 65430; 
+		System.out.println("문제2. 65430원을 만들기 위한 화폐의 갯수를 구하시오.");
+		System.out.println("답: ");
+		System.out.println("    만원= "+ (money / 10000));
+		System.out.println("    천원= "+ (money / 1000%10));
+		System.out.println("    백원= "+ (money / 100%10));
+		System.out.println("    십원= "+ (money % 100 /10));
+		System.out.println("    일원= "+ (money % 10));
+	}
+	
+	public static void question1() {
+		String a = "100";
+		String b = "200";
+		
+		System.out.println("문제1. String형 a와 b의 값을 형변환해서 두수의 곱을 구하시오.");
+		System.out.println("답: "+ (Integer.parseInt(a)*Integer.parseInt(b)));
+	}
+}

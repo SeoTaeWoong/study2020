@@ -1,0 +1,75 @@
+package interface_1;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.Container;
+import java.awt.Frame;
+import java.awt.Label;
+
+public class LoginResult implements WindowListener{
+	public static final String id,pw;
+	Frame f = new Frame();
+	static {
+		id = "Angel";
+		pw = "1004";
+	}
+	public LoginResult(String id,String pw) {
+		
+		Label l = new Label();
+		f.setLayout(null);
+		f.setTitle("LoginResult");
+		f.setBounds(640,320,300,100);
+		if(this.id.equals(id) && this.pw.equals(pw)) {
+			l.setText("로그인 성공!");
+			l.setBounds(130,50,90,90);
+			
+			f.add(l);
+			f.setVisible(true);
+			
+		}else {
+			l.setText("로그인 실패 :p");
+			l.setBounds(130,50,90,90);
+			
+			f.add(l);
+			f.setVisible(true);
+		}
+		f.addWindowListener(this);
+	}
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		f.setVisible(false);
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

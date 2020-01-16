@@ -1,0 +1,45 @@
+package interface_1;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Login extends JFrame{
+	private JLabel idL, pwL;
+	private JTextField idTF, pwTF;
+	private JButton b;
+	
+	public Login() {
+		this.setLayout(null);
+		setBounds(700,350,300,300);
+
+		
+		idL = new JLabel("아이디");
+		idL.setBounds(30,80,50,40);
+		pwL = new JLabel("비밀번호");
+		pwL.setLocation(30,120);
+		pwL.setSize(50,70);
+		
+		idTF = new JTextField();
+		pwTF = new JTextField();
+		idTF.setBounds(120,80,100,30);
+		pwTF.setBounds(120,120,100,30);
+		
+		b = new JButton("로그인");
+		b.setBounds(100,180, 80,40);
+		
+		Container c = this.getContentPane();
+		c.add(idL); c.add(idTF); 
+		c.add(pwL); c.add(pwTF);
+		c.add(b);
+		
+		setVisible(true);
+		addWindowListener(new WindowExit());
+	}
+	
+	public static void main(String[] args) {
+		new Login();
+	}
+}

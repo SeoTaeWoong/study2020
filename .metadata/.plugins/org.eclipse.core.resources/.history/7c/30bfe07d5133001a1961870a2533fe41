@@ -1,0 +1,21 @@
+package swing;
+
+import java.awt.FlowLayout;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+
+public class JListEx extends JFrame{
+	public JListEx() {
+		setTitle("JList Test");
+		setLayout(new FlowLayout());
+		
+		
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		JList<String> list2 = new JList<String>(model);
+		model.addElement("사과");model.addElement("배");
+		model.addElement("딸기"); model.addElement("바나나");
+		list2.setSelectedIndex(1);
+	}
+}

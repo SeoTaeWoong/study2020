@@ -1,0 +1,28 @@
+package swing;
+
+public class PersonDTO {
+	private String id;
+	private String name;
+	private String pwd;
+	private String tel;
+
+	public PersonDTO(String id, String name, String email, String tel) {
+		this.id = id;
+		this.name = name;
+		this.pwd = email;
+		this.tel = tel;
+	}
+	
+	public String getId(String id) {
+		return id;
+	}
+	public String getName(String name) {
+		return name;
+	}
+	public String getEmail(String email) {
+		return email;
+	}
+	public String getTel(String tel) {
+		return tel;
+	}
+}

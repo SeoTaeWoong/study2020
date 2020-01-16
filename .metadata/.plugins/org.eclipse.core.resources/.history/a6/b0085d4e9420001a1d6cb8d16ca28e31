@@ -1,0 +1,26 @@
+package question;
+
+public class Result {
+	public static void main(String[] args) {
+		question1();
+	}
+	
+	public static void question2() {
+		int money = 65430; 
+		System.out.println("문제2. 65430원을 만들기 위한 화폐의 갯수를 구하시오.");
+		System.out.println("답: ");
+		System.out.println("    만원= "+ (money / 10000));
+		System.out.println("    천원= "+ (money / 1000%10));
+		System.out.println("    백원= "+ (money / 100%10));
+		System.out.println("    십원= "+ (money % 100 /10));
+		System.out.println("    일원= "+ (money % 10));
+	}
+	
+	public static void question1() {
+		String a = "100";
+		String b = "200";
+		
+		System.out.println("문제1. String형 a와 b의 값을 형변환해서 두수의 곱을 구하시오.");
+		System.out.println("답: "+ (Integer.parseInt(a)*Integer.parseInt(b)));
+	}
+}

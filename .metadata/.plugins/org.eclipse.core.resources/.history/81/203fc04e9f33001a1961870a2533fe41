@@ -1,0 +1,17 @@
+package swing;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+
+public class DrCanvas extends Canvas{
+
+	
+	public DrCanvas(String x1, String x2, String y1, String y2, boolean fill, String color, String figure){
+		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+	}
+}

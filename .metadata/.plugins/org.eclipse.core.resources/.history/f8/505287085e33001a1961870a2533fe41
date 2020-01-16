@@ -1,0 +1,32 @@
+package swing;
+
+import javax.swing.table.AbstractTableModel;
+
+class JTableMode extends AbstractTableModel{
+
+	Object[][] data={{"Nari","마루치",new Integer(1234),"옆집친구"},
+					{"Nari","오윤아",new Integer(1234),"예쁜이"},
+					{"Nari","오윤서",new Integer(1234),"귀염둥이"},
+					{"Nari","아라치",new Integer(1234),"동아리 친구"}};
+	String[] name = {"아이디","이름","비밀번호","구분"};
+	
+	@Override
+	public int getRowCount() {
+		return 0;
+	}
+
+	@Override
+	public int getColumnCount() {
+		return 0;
+	}
+
+	@Override
+	public Object getValueAt(int r, int c) {
+		return null;
+	}
+	
+}
+
+public class JTableEx {
+
+}

@@ -1,0 +1,775 @@
+package nested;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Color;
+import java.awt.Font;
+
+import java.text.DecimalFormat;
+
+public class CalcMenu implements ActionListener{
+	
+	
+	int count = 0;
+	int zero_count = 0;
+	double temp = 0;
+	int sosujum = 0;
+	int back_cnt=0;
+	String symbol = "";
+	String s_temp = "0";
+	String num = "";
+	String num1 = "";
+	String re_sTemp = "";
+	String re_Symbol = "";
+	
+	JFrame jf;
+	JButton[] jb;
+	JLabel[] jl;
+	
+	
+	public CalcMenu(){
+		jf = new JFrame();
+		jb = new JButton[18];
+		jl = new JLabel[2];
+		
+		int x=10; int y=140;
+		
+		jf.setLayout(null);
+		Font font = new Font("글씨체", Font.CENTER_BASELINE, 15);
+		
+		for(int i =0;i<jl.length;i++) { // JLabel
+			if(i==0) { jl[i] = new JLabel("");jl[i].setBounds(10,10,265,30);}
+			else { jl[i] = new JLabel("0"); jl[i].setBounds(10,50,265,30);}
+			jl[i].setOpaque(true);
+			jl[i].setBackground(Color.lightGray);
+			jl[i].setFont(font);
+			jl[i].setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+			
+			jf.add(jl[i]);
+		}
+		
+		String[] title = {"7","8","9","/","4","5","6","X","1","2","3","-",".","0","=","+","BackSpace","C"};
+		for(int i=1;i<jb.length+1;i++) {
+			jb[i-1] = new JButton();
+			jb[i-1].setText(title[i-1]);
+			if(i-1<16) {
+				jb[i-1].setBounds(x,y,59,59); // 10 150
+				x+=69;
+				if(i%4==0) {
+					y+=69;
+					x=10;
+				}
+			}else {
+				if(i-1 == 16)	jb[i-1].setBounds(10,90,125,40);
+				else jb[i-1].setBounds(150,90,125,40);
+				// 10,150,40,40
+			} 
+			jf.add(jb[i-1]);
+		}
+
+		jf.setTitle("계산기");
+		jf.setBounds(700,500,289,445);
+		jf.setResizable(false);
+
+		
+		jf.setVisible(true);
+		
+		jf.addWindowListener(new WindowAdapter() { // x버튼 종료
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		//////////////////////
+		for(int i = 0; i<jb.length;i++) {
+			jb[i].addActionListener(this);
+		}
+	}
+	
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		DecimalFormat df = new DecimalFormat("###,###.###");
+		if(e.getSource() == jb[14] && symbol.equals("=")) {
+			num =df.format(temp)+re_Symbol+re_sTemp+"=";
+			jl[0].setText(num);
+			switch(re_Symbol) {
+			case "/":
+				temp = new CalcFunction().division(temp, Double.parseDouble(re_sTemp));
+				break;
+			case "*":
+				temp = new CalcFunction().multiplication(temp, Double.parseDouble(re_sTemp));
+				break;
+			case "-":
+				temp = new CalcFunction().minus(temp, Double.parseDouble(re_sTemp));
+				break;
+			case "+":
+				temp = new CalcFunction().plus(temp, Double.parseDouble(re_sTemp));
+				break;
+			}
+			jl[1].setText(df.format(temp)+"");
+			s_temp = df.format(temp);
+			symbol = "=";
+			count = 0;
+		}else if(e.getSource()==jb[0]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "7";
+					s_temp = "7";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "7";
+					s_temp = s_temp + "7";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "7";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "7";
+					s_temp = s_temp + "7";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[1]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "8";
+					s_temp = "8";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "8";
+					s_temp = s_temp + "8";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "8";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "8";
+					s_temp = s_temp + "8";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[2]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "9";
+					s_temp = "9";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "9";
+					s_temp = s_temp + "9";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "9";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "9";
+					s_temp = s_temp + "9";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[3]) { // 나누기
+			if (count == 0) {
+				temp = Double.parseDouble(s_temp);
+				num = df.format(temp)+"/";
+				jl[0].setText(num);
+				s_temp = "0";
+				symbol = "/";
+				count++;
+				// 만약 잘못 연산 기호를 입력했다면 바꿀기회가 사라지네..
+			}else if(count == 1) {
+				//잘못 연산기호를 입력했을때를 대비해서..
+				num = df.format(temp)+"/";
+				jl[0].setText(num);
+				symbol = "/";
+			}else  if(count >= 2){
+				//카운트가 1이면 이미 한번 연산자가 들어왔다가 나간겁니다.
+				//카운트가 2이면 두번째 값을 입력받은것입니다.
+				//연산을 할수있게 만들어줍니다.
+				//temp에는 무엇인가 값이 입력되있을것이고 그 값과 이전에 입력됬을 연산부를 찾아 계산해주면 됩니다
+				num = num+"/";
+				jl[0].setText(num);
+				switch(symbol) {
+				case "/":
+					temp = new CalcFunction().division(temp, Double.parseDouble(s_temp));
+					break;
+				case "*":
+					temp = new CalcFunction().multiplication(temp, Double.parseDouble(s_temp));
+					break;
+				case "-":
+					temp = new CalcFunction().minus(temp, Double.parseDouble(s_temp));
+					break;
+				case "+":
+					temp = new CalcFunction().plus(temp, Double.parseDouble(s_temp));
+					break;
+				}
+				jl[1].setText(df.format(temp)+"");
+				s_temp = "0";
+				symbol = "/";
+				count = 1;
+			}
+			sosujum=0;
+			num1=num;
+			zero_count = 0;
+			back_cnt = 0;
+		}else if(e.getSource()==jb[4]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "4";
+					s_temp = "4";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "4";
+					s_temp = s_temp + "4";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "4";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "4";
+					s_temp = s_temp + "4";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[5]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "5";
+					s_temp = "5";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "5";
+					s_temp = s_temp + "5";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "5";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "5";
+					s_temp = s_temp + "5";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[6]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "6";
+					s_temp = "6";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "6";
+					s_temp = s_temp + "6";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "6";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "6";
+					s_temp = s_temp + "6";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[7]) { //곱하기
+			if (count == 0) {
+				temp = Double.parseDouble(s_temp);
+				num = df.format(temp)+"*";
+				jl[0].setText(num);
+				s_temp = "0";
+				symbol = "*";
+				count++;
+				// 만약 잘못 연산 기호를 입력했다면 바꿀기회가 사라지네..
+			}else if(count == 1) {
+				//잘못 연산기호를 입력했을때를 대비해서..
+				num = df.format(temp)+"*";
+				jl[0].setText(num);
+				symbol = "*";
+			}else  if(count >= 2){
+				//카운트가 1이면 이미 한번 연산자가 들어왔다가 나간겁니다.
+				//카운트가 2이면 두번째 값을 입력받은것입니다.
+				//연산을 할수있게 만들어줍니다.
+				//temp에는 무엇인가 값이 입력되있을것이고 그 값과 이전에 입력됬을 연산부를 찾아 계산해주면 됩니다
+				num = num+"*";
+				jl[0].setText(num);
+				switch(symbol) {
+				case "/":
+					temp = new CalcFunction().division(temp, Double.parseDouble(s_temp));
+					break;
+				case "*":
+					temp = new CalcFunction().multiplication(temp, Double.parseDouble(s_temp));
+					break;
+				case "-":
+					temp = new CalcFunction().minus(temp, Double.parseDouble(s_temp));
+					break;
+				case "+":
+					temp = new CalcFunction().plus(temp, Double.parseDouble(s_temp));
+					break;
+				}
+				jl[1].setText(df.format(temp)+"");
+				s_temp = "0";
+				symbol = "*";
+				count = 1;
+			}
+			sosujum=0;
+			num1=num;
+			zero_count = 0;
+			back_cnt = 0;
+		}else if(e.getSource()==jb[8]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "1";
+					s_temp = "1";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "1";
+					s_temp = s_temp + "1";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "1";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "1";
+					s_temp = s_temp + "1";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[9]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "2";
+					s_temp = "2";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "2";
+					s_temp = s_temp + "2";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "2";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "2";
+					s_temp = s_temp + "2";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[10]) {
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0");
+			}
+			if(count == 0) {
+				if(zero_count == 1 || zero_count == 0) {
+					num = "3";
+					s_temp = "3";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}else {
+					num = num + "3";
+					s_temp = s_temp + "3";
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				if(zero_count == 1|| zero_count == 0) {
+					s_temp = "3";
+					num = num1 + Integer.parseInt(s_temp);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}else {
+					num = num + "3";
+					s_temp = s_temp + "3";
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			back_cnt++;
+		}else if(e.getSource()==jb[11]) { // 빼기
+			if (count == 0) {
+				temp = Double.parseDouble(s_temp);
+				num = df.format(temp)+"-";
+				jl[0].setText(num);
+				s_temp = "0";
+				symbol = "-";
+				count++;
+				// 만약 잘못 연산 기호를 입력했다면 바꿀기회가 사라지네..
+			}else if(count == 1) {
+				//잘못 연산기호를 입력했을때를 대비해서..
+				num = df.format(temp)+"-";
+				jl[0].setText(num);
+				symbol = "-";
+			}else  if(count >= 2){
+				//카운트가 1이면 이미 한번 연산자가 들어왔다가 나간겁니다.
+				//카운트가 2이면 두번째 값을 입력받은것입니다.
+				//연산을 할수있게 만들어줍니다.
+				//temp에는 무엇인가 값이 입력되있을것이고 그 값과 이전에 입력됬을 연산부를 찾아 계산해주면 됩니다
+				num = num+"-";
+				jl[0].setText(num);
+				switch(symbol) {
+				case "/":
+					temp = new CalcFunction().division(temp, Double.parseDouble(s_temp));
+					break;
+				case "*":
+					temp = new CalcFunction().multiplication(temp, Double.parseDouble(s_temp));
+					break;
+				case "-":
+					temp = new CalcFunction().minus(temp, Double.parseDouble(s_temp));
+					break;
+				case "+":
+					temp = new CalcFunction().plus(temp, Double.parseDouble(s_temp));
+					break;
+				}
+				jl[1].setText(df.format(temp)+"");
+				s_temp = "0";
+				symbol = "-";
+				count = 1;
+			}
+			sosujum=0;
+			num1=num;
+			zero_count = 0;
+			back_cnt = 0;
+		}else if(e.getSource()==jb[12]) {  // 소숫점
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0"); 
+			}
+			if (zero_count == 0 || zero_count == 1 && sosujum == 0) {
+				num = df.format(temp)+".";
+				s_temp = s_temp + ".";
+				jl[1].setText(s_temp);
+				zero_count=2;
+				sosujum++;
+				back_cnt++;
+			}else if(sosujum == 0) {
+				num = num+".";
+				s_temp = s_temp + ".";
+				jl[1].setText(s_temp);
+				zero_count=2;
+				sosujum++;
+				back_cnt++;
+			}
+			
+		}else if(e.getSource()==jb[13]) { // 숫자0
+			if(symbol.equals("=")) {
+				jl[0].setText(""); num = ""; num1 = ""; symbol = ""; s_temp = "0"; 
+				temp = 0; count = 0; zero_count = 0; jl[1].setText("0"); 
+			}
+			if(count == 0) {
+				// 카운트가 0인경우는 temp의 값이 0이거나 아직 수를 입력중인 상태이다.
+				// 영카운트는 한번만 사용가능하거나  앞에 숫자가 입력됬을경우에만 연속 사용이 가능하다.
+				if(zero_count == 0) {
+					//단독으로 사용할경우
+					num = "0";
+					s_temp = "0";
+					jl[1].setText(s_temp);
+					zero_count++;
+				}else if(zero_count == 2) {
+					//앞에 숫자가 입력된 경우
+					num = num + "0";
+					s_temp = s_temp + "0";
+					jl[1].setText(s_temp);
+					back_cnt++;
+				}
+			}else if(count >= 1) {
+				//카운트가 1인경우 이미 temp에 값이 들어있고 연산자가 나온 직후이다.
+				//카운트가 2인경우 다음값을 입력할때이다.
+				if(zero_count == 0 && count == 1) {
+					num1 = num;
+					num = num + "0";
+					s_temp = "0";
+					jl[1].setText(s_temp);
+					zero_count++;
+					count++;
+				}else if(zero_count == 2){
+					num = num + "0";
+					s_temp = s_temp + "0";
+					jl[1].setText(s_temp);
+					count++;
+					back_cnt++;
+				}
+			}
+			
+		}else if(e.getSource()==jb[14]) { // 결과 =
+			if (count == 0) {
+				temp = Double.parseDouble(s_temp);
+				num = df.format(temp)+"=";
+				jl[0].setText(num);
+				s_temp = "0";
+				symbol = "=";
+				count++;
+			}else if(count == 1) {
+				//잘못 연산기호를 입력했을때를 대비해서..
+				num = df.format(temp)+"=";
+				jl[0].setText(num);
+				symbol = "=";
+			}else if(count >= 2){
+				//카운트가 1이면 이미 한번 연산자가 들어왔다가 나간겁니다.
+				//카운트가 2이면 두번째 값을 입력받은것입니다.
+				//연산을 할수있게 만들어줍니다.
+				//temp에는 무엇인가 값이 입력되있을것이고 그 값과 이전에 입력됬을 연산부를 찾아 계산해주면 됩니다
+				num = num+"=";
+				jl[0].setText(num);
+				switch(symbol) {
+				case "/":
+					temp = new CalcFunction().division(temp, Double.parseDouble(s_temp));
+					break;
+				case "*":
+					temp = new CalcFunction().multiplication(temp, Double.parseDouble(s_temp));
+					break;
+				case "-":
+					temp = new CalcFunction().minus(temp, Double.parseDouble(s_temp));
+					break;
+				case "+":
+					temp = new CalcFunction().plus(temp, Double.parseDouble(s_temp));
+					break;
+				}
+				re_sTemp = s_temp;
+				re_Symbol = symbol;
+				jl[1].setText(df.format(temp)+"");
+				s_temp = df.format(temp);
+				symbol = "=";
+				count = 0;
+			}
+			zero_count = 0;
+			
+		}else if(e.getSource()==jb[15]) { // 덧셈
+			if (count == 0) {
+				temp = Double.parseDouble(s_temp);
+				num = df.format(temp)+"+";
+				jl[0].setText(num);
+				s_temp = "0";
+				symbol = "+";
+				count++;
+				// 만약 잘못 연산 기호를 입력했다면 바꿀기회가 사라지네..
+			}else if(count == 1) {
+				//잘못 연산기호를 입력했을때를 대비해서..
+				num = df.format(temp)+"+";
+				jl[0].setText(num);
+				symbol = "+";
+			}else  if(count >= 2){
+				//카운트가 1이면 이미 한번 연산자가 들어왔다가 나간겁니다.
+				//카운트가 2이면 두번째 값을 입력받은것입니다.
+				//연산을 할수있게 만들어줍니다.
+				//temp에는 무엇인가 값이 입력되있을것이고 그 값과 이전에 입력됬을 연산부를 찾아 계산해주면 됩니다
+				num = num+"+";
+				jl[0].setText(num);
+				switch(symbol) {
+				case "/":
+					temp = new CalcFunction().division(temp, Double.parseDouble(s_temp));
+					break;
+				case "*":
+					temp = new CalcFunction().multiplication(temp, Double.parseDouble(s_temp));
+					break;
+				case "-":
+					temp = new CalcFunction().minus(temp, Double.parseDouble(s_temp));
+					break;
+				case "+":
+					temp = new CalcFunction().plus(temp, Double.parseDouble(s_temp));
+					break;
+				}
+				jl[1].setText(df.format(temp)+"");
+				s_temp = "0";
+				symbol = "+";
+				count = 1;
+			}
+			sosujum=0;
+			num1=num;
+			zero_count = 0;
+			back_cnt = 0;
+			
+		}else if(e.getSource()==jb[16]) { //백스페이스;  //////////////////////////////수정할곳
+			//여기는 백스페이스 즉 temp값이 하나씩 사라진다.
+			//temp값 하나씩 없어지게 만들자아ㅏ
+			if(symbol.equals("=")) {
+				jl[0].setText("");
+			}if(count == 0) { // 처음 입력일때
+				// 0에다가 백스페이스를 계속 입력한다면 아래 출력
+				if(back_cnt!=0)back_cnt--;
+				
+				if(sosujum == 1 && s_temp.charAt(s_temp.length()-1)=='.' ) {
+					s_temp = s_temp.substring(0,back_cnt);
+					jl[1].setText(s_temp);
+					back_cnt--;
+					zero_count=2;
+				}else if(back_cnt == 0 && symbol.equals("=")) {
+					jl[0].setText("");
+				}else if(back_cnt == 0) {
+					num = "0";
+					s_temp = "0";
+					jl[1].setText(s_temp);
+					zero_count=0;
+				}else {
+					//숫자가 입력됬을때 백스페이스를 입력한경우 모든 수를 입력했을때 
+					//back_cnt값을 증가시키고 연산자 입력시 back_cnt값을 초기화한다.
+					//
+					s_temp = s_temp.substring(0,back_cnt);
+					jl[1].setText(s_temp);
+					zero_count=2;
+				}
+			}else if(count >= 1) {
+				//카운트가 1인경우 이미 temp에 값이 들어있는경우이다.
+				
+				if(back_cnt != 0) back_cnt--;
+				
+				if(sosujum == 1 && s_temp.charAt(s_temp.length()-1)=='.' ) {
+					num = num1+s_temp.substring(0,back_cnt);
+					s_temp = s_temp.substring(0,back_cnt);
+					jl[1].setText(s_temp);
+					back_cnt--;
+					zero_count=2;
+				}else if(back_cnt == 0 && count ==1) {
+				}else if(back_cnt==0){
+					jl[1].setText("0");
+					zero_count=0;
+				}else {
+					num = num1+s_temp.substring(0,back_cnt);
+					s_temp = s_temp.substring(0,back_cnt);
+					jl[1].setText(s_temp);
+					count++;
+					zero_count=2;
+				}
+			}
+			
+		}else if(e.getSource()==jb[17]) { //초기화
+			jl[0].setText("");
+			num = "";
+			num1 = "";
+			symbol = "";
+			s_temp = "0";
+			temp = 0;
+			count = 0;
+			zero_count = 0;
+			sosujum=0;
+			back_cnt =0;
+			jl[1].setText("0");
+		}  		
+	}
+	
+	
+
+	public static void main(String[] args) {
+		new CalcMenu();
+	}
+
+
+}

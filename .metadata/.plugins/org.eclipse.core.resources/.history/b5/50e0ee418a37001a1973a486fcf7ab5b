@@ -1,0 +1,22 @@
+package galaga;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+
+public class GalagaCanvas extends Canvas{
+	
+	GalagaView GV;
+	public GalagaCanvas(GalagaView GV) {
+		
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		Image image = getToolkit().getDefaultToolkit().getImage("image/Falcon.png");
+		
+		g.drawImage(image, 30,30,60,60,0,0,100,150,this);
+	}
+	
+	
+}

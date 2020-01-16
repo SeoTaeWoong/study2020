@@ -1,0 +1,15 @@
+package instance;
+
+public class Practice2 {
+	public static void main(String[] args) {
+		System.out.println("»ï°¢ÇüÀÇ ³ĞÀÌ¸¦ °è»êÇÏ½Ã¿À (base, height, area)");
+		int base = 10;
+		int height = 3;
+		double area = (base*height)/2.0;
+		
+		System.out.println("****»ï°¢ÇüÀÇ ³ĞÀÌ ±¸ÇÏ±â****");
+		System.out.println("¹Øº¯: "+ base);
+		System.out.println("³ôÀÌ: "+ height);
+		System.out.println("³ĞÀÌ: "+ String.format("%.2f", area);
+	}
+}

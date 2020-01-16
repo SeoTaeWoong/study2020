@@ -1,0 +1,27 @@
+package collection;
+
+import java.util.Vector;
+
+public class VectorTest {
+	
+	public static void main(String[] args) {
+		Vector<String> v = new Vector<String>();
+		
+		System.out.println("항목 추가");
+		for(int i=1; i<v.size();i++) {
+			v.add(i+"");
+		}
+		v.add(5+"");
+		v.add(5+"");
+		System.out.println("벡터 크기: "+ v.size());
+		System.out.println("벡터 용량: "+v.capacity());// 기본용량 10개,용량이 넘으면 10개씩증가
+		System.out.println();
+		
+		for(int i=0; i<v.size();i++) {
+			System.out.println(v.get(i));
+		}
+		
+		
+	}
+		
+}

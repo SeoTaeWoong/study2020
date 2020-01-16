@@ -1,0 +1,9 @@
+package exam;
+
+public class Question {
+	private TestSeo list = new TestSeo(); 
+	int i = 1;
+	public static String question1() {
+		return ;
+	}
+}

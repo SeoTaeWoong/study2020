@@ -1,0 +1,36 @@
+package collection;
+
+public class SungJuckDTO {
+	
+	private String key;
+	private String name;
+	private String kor;
+	private String eng;
+	private String math;
+	
+	
+	public SungJuckDTO(String name){
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public String getKor() {
+		return kor;
+	}
+	public void setKor(String kor) {
+		this.kor = kor;
+	}
+	
+	
+}

@@ -1,0 +1,17 @@
+package thread;
+
+public class Synchronized extends Thread{
+	private int count
+	
+	public static void main(String[] args) {
+		Synchronized aa = new Synchronized();
+		Synchronized bb = new Synchronized();
+		Synchronized cc = new Synchronized();
+		aa.setName("aa");
+		bb.setName("bb");
+		cc.setName("cc");
+		aa.start();
+		bb.start();
+		cc.start();
+	}
+}

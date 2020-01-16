@@ -1,0 +1,122 @@
+package study_teacher;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class DrCanvas extends Canvas {
+	private MsPaint msPaint;
+
+	public DrCanvas(MsPaint msPaint) {
+		this.msPaint = msPaint;
+		this.setBackground(new Color(255,225,255));
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		
+		legacy(g);
+		//ÁÂÇ¥
+		int x1 = Integer.parseInt(msPaint.getX1T().getText().trim());
+		int y1 = Integer.parseInt(msPaint.getY1T().getText().trim());
+		int x2 = Integer.parseInt(msPaint.getX2T().getText().trim());
+		int y2 = Integer.parseInt(msPaint.getY2T().getText().trim());
+		int z1 = Integer.parseInt(msPaint.getZ1T().getText().trim());
+		int z2 = Integer.parseInt(msPaint.getZ2T().getText().trim());
+		
+		switch(msPaint.getCombo().getSelectedIndex()) {
+		case 0:	g.setColor(new Color(255,0,0));	break;
+		case 1:	g.setColor(new Color(200,91,2)); break;
+		case 2:	g.setColor(new Color(255,255,0)); break;
+		case 3:	g.setColor(new Color(0,255,0)); break;
+		case 4:	g.setColor(new Color(0,0,255)); break;
+		case 5:	g.setColor(new Color(11,1,80)); break;
+		case 6:	g.setColor(new Color(255,0,255)); break;
+		}
+		
+		if(msPaint.getFill().isSelected()) {
+			if(msPaint.getLine().isSelected())
+				g.drawLine(x1, y1, x2, y2);
+			else if(msPaint.getCircle().isSelected())
+				g.fillOval(x1, y1, x2-x1, y2-y1);
+			else if(msPaint.getRect().isSelected())
+				g.fillRect(x1, y1, x2-x1, y2-y1);
+			else if(msPaint.getRoundRect().isSelected())
+				g.fillRoundRect(x1, y1, x2-x1, y2-y1,z1,z2);
+		}else {
+			if(msPaint.getLine().isSelected())
+				g.drawLine(x1, y1, x2, y2);
+			else if(msPaint.getCircle().isSelected())
+				g.drawOval(x1, y1, x2-x1, y2-y1);
+			else if(msPaint.getRect().isSelected())
+				g.drawRect(x1, y1, x2-x1, y2-y1);
+			else if(msPaint.getRoundRect().isSelected())
+				g.drawRoundRect(x1, y1, x2-x1, y2-y1,z1,z2);
+		}
+		
+	}
+	
+	private void legacy(Graphics g) {
+		for(ShapeDTO dto : msPaint.getList()) {
+			int x1 = dto.getX1();
+			int y1 = dto.getY1();
+			int x2 = dto.getX2();
+			int y2 = dto.getY2();
+			int z1 = dto.getZ1();
+			int z2 = dto.getZ2();
+			
+			switch(dto.getColor()) {
+			case 0:	g.setColor(new Color(255,0,0));	break;
+			case 1:	g.setColor(new Color(200,91,2)); break;
+			case 2:	g.setColor(new Color(255,255,0)); break;
+			case 3:	g.setColor(new Color(0,255,0)); break;
+			case 4:	g.setColor(new Color(0,0,255)); break;
+			case 5:	g.setColor(new Color(11,1,80)); break;
+			case 6:	g.setColor(new Color(255,0,255)); break;
+			}
+			
+			if(dto.isFill()) {
+				if(dto.getShape()==Figure.LINE)
+					g.drawLine(x1, y1, x2, y2);
+				else if(dto.getShape()==Figure.CIRCLE)
+					g.fillOval(x1, y1, x2-x1, y2-y1);
+				else if(dto.getShape()==Figure.RECT)
+					g.fillRect(x1, y1, x2-x1, y2-y1);
+				else if(dto.getShape()==Figure.ROUNDRECT)
+					g.fillRoundRect(x1, y1, x2-x1, y2-y1,z1,z2);
+			}else {
+				if(msPaint.getLine().isSelected())
+					g.drawLine(x1, y1, x2, y2);
+				else if(msPaint.getCircle().isSelected())
+					g.drawOval(x1, y1, x2-x1, y2-y1);
+				else if(msPaint.getRect().isSelected())
+					g.drawRect(x1, y1, x2-x1, y2-y1);
+				else if(msPaint.getRoundRect().isSelected())
+					g.drawRoundRect(x1, y1, x2-x1, y2-y1,z1,z2);
+			}
+			
+		}
+	}
+	
+	@Override
+	public void paintAll(Graphics g) {
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

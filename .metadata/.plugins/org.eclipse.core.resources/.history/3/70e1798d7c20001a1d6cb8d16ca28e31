@@ -1,0 +1,10 @@
+package exam;
+
+public class Question {
+	private Explanation question = new Explanation();
+	question = 
+	public static void question1() {
+		System.out.println("¹®Á¦ 1.");
+		question.
+	}
+}

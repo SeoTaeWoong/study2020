@@ -1,0 +1,17 @@
+package interface_1;
+
+import java.awt.Frame;
+
+public class LoginResult {
+	public static final String id,pw;
+	static {
+		id = "Angel";
+		pw = "1004";
+	}
+	public LoginResult(String id,String pw) {
+		if(this.id.equals(id) && this.pw.equals(pw)) {
+			Frame f = new Frame();
+			
+		}
+	}
+}

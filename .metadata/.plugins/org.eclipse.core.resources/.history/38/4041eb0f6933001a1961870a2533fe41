@@ -1,0 +1,8 @@
+package swing;
+
+public class PersonDTO {
+	private id;
+	private name;
+	private email;
+	private del
+}

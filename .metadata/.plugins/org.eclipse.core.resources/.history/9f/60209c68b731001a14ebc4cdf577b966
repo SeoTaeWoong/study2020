@@ -1,0 +1,23 @@
+package study_teacher;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+public class Test07 {
+	public static void main(String[] args) {
+		StringBuffer a = new StringBuffer();
+		int index = 0;
+		a.append("123.");
+		while(a.indexOf(".", index) != -1) {
+			if(index == a.indexOf(".")) {
+				System.out.println("Á¡¹ß°ß");
+				System.out.println(index);
+			}else {
+				a.append(".");
+				System.out.println(a.toString());
+			}
+			index += 1;
+		}
+		
+	}
+}

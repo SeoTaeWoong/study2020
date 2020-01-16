@@ -1,0 +1,15 @@
+package network;
+
+import javax.swing.JFrame;
+
+public class ChatClient extends JFrame{
+
+	public ChatClient(){
+		setBounds(800,300,300,250);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

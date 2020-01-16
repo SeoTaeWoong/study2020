@@ -1,0 +1,25 @@
+package thread;
+
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class Clock extends Frame{
+	public Clock() {
+		setBounds(700,300,300,100);
+		setVisible(true);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+
+		Calendar c = Calendar.getInstance();
+		g.drawString(""+c.getTime(), 80, 50);
+	}
+	public static void main(String[] args) {
+		new Clock();
+		
+	}
+}

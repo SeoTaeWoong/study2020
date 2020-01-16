@@ -1,0 +1,10 @@
+package thread;
+
+public class ATMTest {
+	private long deposteMoney = 100000;
+	private long balance;
+	
+	public static void main(String[] args) {
+		
+	}
+}

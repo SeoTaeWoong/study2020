@@ -1,0 +1,43 @@
+package nested;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.Panel;
+
+public class Card {
+	private Frame frame;
+	private CardLayout card;
+	private Panel[] panel;
+	
+	public Card() {
+		frame = new Frame();
+		card = new CardLayout(); 
+		frame.setLayout(card);
+		
+		panel = new Panel[6];
+		
+		String[] title = {"»¡°­","ÃÊ·Ï","ÆÄ¶û","³ë¶û","º¸¶ó","ÇÏ´Ã"};
+		Color[] color = {Color.red,Color.green,Color.blue,Color.yellow,Color.magenta,Color.CYAN};
+		for(int i =0; i<panel.length; i++) {
+			panel[i] = new Panel();
+			panel[i].setBackground(color[i]);
+			frame.add(panel[i],title[i]);
+		}
+		
+		frame.setTitle("¿¬½À");
+		frame.setBounds(700,300,300,300);
+		frame.setVisible(true);
+		
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				System.exit(0);
+			}
+				
+		});
+	}
+	
+	public static void main(String[] args) {
+		new Card();
+	}
+}
