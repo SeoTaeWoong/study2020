@@ -1,0 +1,19 @@
+package network;
+
+public class infoDTO {
+	public static final String QUIT;
+	String msg;
+	String nickName;
+	
+	public infoDTO() {
+		
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+}

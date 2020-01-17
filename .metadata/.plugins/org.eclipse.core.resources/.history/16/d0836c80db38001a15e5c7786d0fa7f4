@@ -1,0 +1,22 @@
+package network;
+
+enum{
+	quit
+}
+public class infoDTO {
+	public static String quit;
+	String msg;
+	String nickName;
+	
+	public infoDTO() {
+		
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+}

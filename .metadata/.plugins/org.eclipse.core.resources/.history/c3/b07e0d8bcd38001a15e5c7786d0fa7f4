@@ -1,0 +1,132 @@
+package network;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
+public class ChatClient extends JFrame implements ActionListener, Runnable{
+	
+	JTextArea output;
+	JTextField input;
+	JButton send;
+	private BufferedReader br;
+	private PrintWriter pw;
+	private Socket socket;
+	
+	public ChatClient(){
+		//실행시 세로 스크롤바가 항상 뜨게
+		//에어리어에 입력이 안되게
+		
+		output = new JTextArea();
+		output.setEditable(false);
+		input = new JTextField();
+		send = new JButton("전송");
+		
+		
+		JPanel southP = new JPanel(new BorderLayout());
+		southP.add("Center",input); southP.add("East",send);
+		
+		
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(output);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		// 스크롤바가 항상 떠있게  ^
+		
+		Container con = getContentPane();
+		con.add("Center",scroll);
+		con.add("South",southP);
+		
+		setTitle("채팅");
+		setBounds(800,300,400,250);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		
+
+	}
+	
+	public void service() {
+		String serverIP = JOptionPane.showInputDialog(this,"서버IP를 입력하세요.", "127.0.0.1");
+		if(serverIP==null || serverIP.length()==0) {
+			System.out.println("서버IP가 입력되지 않았습니다.");
+			System.exit(0);
+		}
+		
+		String nickName = JOptionPane.showInputDialog(this,"닉네임을 입력하세요.","",JOptionPane.INFORMATION_MESSAGE);
+		if(nickName ==null || nickName.length() == 0) {
+			nickName="guest";
+		}
+		
+		try {
+			socket = new Socket(serverIP,9500);
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+		} catch (UnknownHostException e) {
+			System.out.println("호스트를 찾을 수 없습니다.");
+			System.exit(0);
+		} catch (IOException e) {
+			System.out.println("호스트와의 연결이 끊겼습니다.");
+			System.exit(0);
+		}
+		pw.println(nickName);
+		pw.flush();
+		
+		
+		Thread t = new Thread(this);
+		t.start();
+		
+		send.addActionListener(this);
+		input.addActionListener(this);
+		addWindowListener(new Window);
+	}	
+	
+	@Override
+	public void run() {
+		//서버로 받는쪽
+		while(true) {
+			try {
+				String line;
+				line = br.readLine();
+				
+				if(line == null ||line.equals("quit")) {System.exit(0);}
+				
+				output.setText(line);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//서버로 보내는쪽
+		pw.write(input.getText().trim()+"\n");
+		pw.flush();
+		input.setText("");
+	}
+	
+	public static void main(String[] args) {
+		new ChatClient().service();
+	}
+
+}

@@ -1,0 +1,63 @@
+package network;
+
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandlerObject extends Thread{
+	
+	private Socket socket;
+	private List<ChatHandlerObject> list;
+	private ObjectInputStream ois;
+	private PrintWriter pw;
+	private InfoDTO dto;
+
+	public ChatHandlerObject(Socket socket, List<ChatHandlerObject> list) throws IOException {
+		this.socket=socket;
+		this.list=list;
+		ois = new ObjectInputStream((socket.getInputStream()));
+		pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
+	}
+	@Override
+	public void run() {
+		try {
+			//πﬁ¥¬¬ 
+			dto = (InfoDTO)ois.readObject();
+			broadcast(dto.getNickName()+"¥‘ ¿‘¿Â");
+			while(true){
+				
+				if(dto.getMsg() == null || dto.getMsg().toLowerCase().equals(dto.QUIT)) {
+					break;
+				}
+				broadcast(dto.getNickName()+": "+dto.getMsg());
+			}
+			
+			pw.write("quit");
+			
+			list.remove(this);
+			broadcast(dto.getNickName()+"¥‘ ≈¿Â");
+			pw.close();
+			ois.close();
+			socket.close();
+			//∫∏≥ª¥¬¬ 
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void broadcast(String msg) throws IOException {
+		for(ChatHandlerObject data : list ) {
+			data.pw.write(dto.getMsg()+"\n");
+			data.pw.flush();
+		}
+	}
+	
+}

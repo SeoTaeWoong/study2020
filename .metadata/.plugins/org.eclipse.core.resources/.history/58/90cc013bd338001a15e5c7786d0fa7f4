@@ -1,0 +1,17 @@
+package network;
+
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandler extends Thread{
+	
+	public ChatHandler(Socket socket, List<ChatHandler> list) {
+		
+	}
+	@Override
+	public void run() {
+
+		
+		
+	}
+}

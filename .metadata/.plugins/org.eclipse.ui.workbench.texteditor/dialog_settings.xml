@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="cls"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="연결 종료"/>
+			<item value="setMsg"/>
+			<item value="set"/>
+			<item value="send"/>
+			<item value="버튼"/>
+			<item value="1"/>
+			<item value="&quot;1&quot;"/>
+			<item value="exit"/>
+			<item value="break"/>
+			<item value="break;"/>
+			<item value="ois"/>
+			<item value="flush"/>
+			<item value="dto.set"/>
 			<item value="cls"/>
 			<item value="desel"/>
-			<item value="focu"/>
-			<item value="view"/>
-			<item value="name"/>
-			<item value="L"/>
-			<item value="JLabel();"/>
-			<item value="canva"/>
-			<item value="fileRe"/>
-			<item value="default"/>
-			<item value="Action"/>
-			<item value="adda"/>
-			<item value="ac"/>
-			<item value="j"/>
-			<item value="super"/>
 		</list>
 		<list key="replacehistory">
 			<item value="T"/>

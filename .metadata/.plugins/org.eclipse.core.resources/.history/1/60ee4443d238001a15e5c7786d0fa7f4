@@ -1,0 +1,19 @@
+package network;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class ChatServer {
+	ServerSocket serverSocket;
+	public ChatServer() {
+		try {
+			serverSocket = new ServerSocket(9500);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args) {
+		new ChatServer();
+	}
+}

@@ -1,0 +1,65 @@
+package network;
+
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.List;
+
+public class ChatHandlerObject extends Thread{
+	
+	private Socket socket;
+	private List<ChatHandlerObject> list;
+	private ObjectInputStream ois;
+	private ObjectOutputStream oos;
+	private InfoDTO dto;
+
+	public ChatHandlerObject(Socket socket, List<ChatHandlerObject> list) throws IOException {
+		this.socket=socket;
+		this.list=list;
+		ois = new ObjectInputStream((socket.getInputStream()));
+		oos = new ObjectOutputStream((socket.getOutputStream()));
+	}
+	@Override
+	public void run() {
+		try {
+			//받는쪽
+			dto = (InfoDTO)ois.readObject();
+			broadcast(dto.getNickName()+"님 입장");
+			String line;
+			while(true){
+				line = dto.getMsg();
+				if(line.toLowerCase().equals("quit")) {
+					break;
+				}
+				broadcast(dto.getNickName()+": "+dto.getMsg());
+			}
+			
+			oos.writeObject(dto);
+			
+			list.remove(this);
+			System.out.println("연결 종료");
+			broadcast(dto.getNickName()+"님 퇴장");
+			oos.close();
+			ois.close();
+			socket.close();
+			//보내는쪽
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void broadcast(String msg) throws IOException {
+		for(ChatHandlerObject data : list ) {
+			data.oos.writeObject(dto);
+			data.oos.flush();
+		}
+	}
+	
+}

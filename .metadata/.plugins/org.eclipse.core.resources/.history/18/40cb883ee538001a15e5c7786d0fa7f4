@@ -1,0 +1,28 @@
+package network;
+
+import java.net.Socket;
+
+public class InfoDTO {
+	public static final String QUIT = "0";
+	private String msg;
+	private String nickName;
+	private Socket socket;
+	
+	public InfoDTO() {
+		
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+	public void getMsg(String msg) {
+		this.msg = msg;
+	}
+	public void getNickName(String nickName) {
+		this.nickName = nickName;
+	}
+}

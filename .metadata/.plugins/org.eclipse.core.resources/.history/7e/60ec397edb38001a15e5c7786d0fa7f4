@@ -1,0 +1,7 @@
+package network;
+
+public class infoDTO {
+	String msg;
+	String quit;
+	String nickName;
+}
