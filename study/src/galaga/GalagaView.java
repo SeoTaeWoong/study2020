@@ -22,6 +22,9 @@ public class GalagaView extends JFrame implements KeyListener{
 		private int y1 = 50;
 		private int x2 = 130;
 		private int y2 = 100;
+		private int skillCnt = 0;
+		
+
 		private int moveX1 = 0;
 		private int moveY1 = 1;
 		private int moveX2 = 0;
@@ -47,7 +50,7 @@ public class GalagaView extends JFrame implements KeyListener{
 		
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
@@ -55,31 +58,34 @@ public class GalagaView extends JFrame implements KeyListener{
 		public void keyPressed(KeyEvent e) {
 			
 			if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-				gAtk = true;
-				aDTO = new GalagaAttackDTO(x2+10,y2-20);
+				skillCnt++;
+				System.out.println(skillCnt);
 			}
-
+			
 			if(e.getKeyCode()== KeyEvent.VK_LEFT) {
 				keyLeft = true;
 				if(x1!=-20) {
 					x1-=5; 
 					x2-=5; 
-					moveX1=-6; moveX2=-6;
+					moveX1=-3; moveX2=-3;
 					moveY1=0; moveY2=0;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo정면.png");
 				}
 			}else if(e.getKeyCode()== KeyEvent.VK_RIGHT) {
 				keyRight = true;
 				if(x2!=1000) {
 					x1+=5; x2+=5; 
-					moveX1=6; moveX2=6;
+					moveX1=3; moveX2=3;
 					moveY1=0; moveY2=0;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo정면.png");
 				}
 			}else if(e.getKeyCode()== KeyEvent.VK_UP) {
 				keyUp = true;
 				if(y1!=0) {
 					y1-=5; y2-=5; 
-					moveY1=-6; moveY2=-6;
+					moveY1=-3; moveY2=-3;
 					moveX1=0; moveX2=0;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo정면.png");
 				}
 			}else if(e.getKeyCode()== KeyEvent.VK_DOWN) {
 				keyDown = true;
@@ -87,7 +93,8 @@ public class GalagaView extends JFrame implements KeyListener{
 				if(y2!=570) {
 					y1+=5; y2+=5; 
 					moveX1=0; moveX2=0;
-					moveY1=6; moveY2=6;
+					moveY1=3; moveY2=3;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo정면.png");
 				}
 			}
 			
@@ -110,8 +117,11 @@ public class GalagaView extends JFrame implements KeyListener{
 				keyDown = false;
 			}
 			if(e.getKeyCode()== KeyEvent.VK_SPACE) {
-			//	gAtk = false;
+				gAtk = true;
+				if(skillCnt<5)	aDTO = new GalagaAttackDTO(x2+10,y2-20);
+				else skillCnt=0;
 			}
+			
 		}
 		
 		public void keyProcess() {
@@ -119,8 +129,9 @@ public class GalagaView extends JFrame implements KeyListener{
 				if(x1>0 && y1>0) {
 					x1-=5; x2-=5;
 					y1-=5; y2-=5;
-					moveX1=-6; moveX2=-6;
-					moveY1=-6; moveY2=-6;
+					moveX1=-3; moveX2=-3;
+					moveY1=-3; moveY2=-3;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo상단.png");
 				}
 			}else if(keyUp && keyRight) {
 				if(x2<1000 && y1>0) {
@@ -128,22 +139,25 @@ public class GalagaView extends JFrame implements KeyListener{
 					System.out.println(y1);
 					x1+=5; x2+=5;
 					y1-=5; y2-=5;
-					moveX1=6; moveX2=6;
-					moveY1=-6; moveY2=-6;
+					moveX1=3; moveX2=3;
+					moveY1=-3; moveY2=-3;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo상단.png");
 				}
 			}else if(keyDown && keyLeft) {
 				if(x1>0 && y2<560) {
 					x1-=5; x2-=5;
 					y1+=5; y2+=5;
-					moveX1=-6; moveX2=-6;
-					moveY1=6; moveY2=6;
+					moveX1=-3; moveX2=-3;
+					moveY1=3; moveY2=3;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo하단.png");
 				}
 			}else if(keyDown && keyRight) {
 				if(x2<1000 && y2<560) {
 					x1+=5; x2+=5;
 					y1+=5; y2+=5;
-					moveX1=6; moveX2=6;
-					moveY1=6; moveY2=6;
+					moveX1=3; moveX2=3;
+					moveY1=3; moveY2=3;
+					can.imageF = getToolkit().getDefaultToolkit().getImage("image/ufo하단.png");
 				}
 			}
 			
@@ -217,5 +231,14 @@ public class GalagaView extends JFrame implements KeyListener{
 		public void setaDTO(GalagaAttackDTO aDTO) {
 			this.aDTO = aDTO;
 		}
+		
+		public int getSkillCnt() {
+			return skillCnt;
+		}
+
+		public void setSkillCnt(int atkCnt) {
+			this.skillCnt = atkCnt;
+		}
+		
 		
 }
